@@ -69,6 +69,7 @@ public class Project {
     }
 
     public static void main(String[] args) throws ParseException {
-        Project p1 = new Project("Nguyen Van A", "19/07/2002", "19/07/2002", 1000.0);
+        Project p1 = new Project("lập trình java", "1/1/2022", "1/2/2022", 1000.0);
+        p1.show();
     }
 }
