@@ -3,7 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 public class Project {
-    private static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
+    public static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
     private static int count = 0;
     private String id, name;
     private GregorianCalendar startDate, endDate;

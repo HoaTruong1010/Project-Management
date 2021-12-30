@@ -1,9 +1,8 @@
-package StaffManagement;
-
 public class Programmer extends Staff {
     private static final double OTSalary = 25000;
     private int OT;
     private static final int MAXOT = 30;
+//    sửa lại phương thức khởi tạo
 
     public Programmer() {
         super();
@@ -11,7 +10,7 @@ public class Programmer extends Staff {
 
     public Programmer(int OT) {
         super();
-        this.setOT(OT);
+        this.OT = OT;
     }
 
     public void showSingle() {
@@ -20,10 +19,7 @@ public class Programmer extends Staff {
     }
 
     public double getGrant() {
-        if (this.OT <= MAXOT)
-            return this.OT * 25000;
-        else
-            return MAXOT * 25000;
+        return (this.OT > MAXOT) ? MAXOT * 25000 : this.OT * 25000;
     }
 
     public int getOT() {
