@@ -1,19 +1,21 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
+import java.util.Date;
+import java.util.Scanner;
 
 public class Project {
     private static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
+    private static final Scanner SC = new Scanner(System.in);
     private static int count = 0;
     private String id, name;
-    private GregorianCalendar startDate, endDate;
+    private Date startDate , endDate ;
     private double investment;
     private NormalStaff manager;
 
     {
         this.id = String.format("%03d", ++count);
-        startDate = new GregorianCalendar();
-        endDate = new GregorianCalendar();
+        startDate = new Date();
+        endDate = new Date();
     }
 
     public Project() {
@@ -25,8 +27,8 @@ public class Project {
 
     public Project(String n, String start, String end, double inv) throws ParseException {
         this.name = n;
-        this.startDate.setTime(F.parse(start));
-        this.endDate.setTime(F.parse(end));
+        this.startDate = F.parse(start);
+        this.endDate = F.parse(end);
         this.investment = inv;
 //        this.manager = new NormalStaff(m.getFullName(), m.getEmail(), m.getGender(),
 //                m.getDateOfBirth(), m.getFactor());
@@ -37,6 +39,17 @@ public class Project {
         this.startDate = x.startDate;
         this.endDate = x.endDate;
         this.investment = x.investment;
+    }
+
+    public void add() throws ParseException {
+        System.out.print("Nhap ten du an: ");
+        this.name = SC.nextLine();
+        System.out.print("Nhap ngay bat dau: ");
+        this.startDate = F.parse(SC.nextLine());
+        System.out.print("Nhap ngay ket thuc: ");
+        this.endDate = F.parse(SC.nextLine());
+        System.out.print("Nhap phi dau tu: ");
+        this.investment = SC.nextDouble();
     }
 
     public void showSingle() {
@@ -65,20 +78,20 @@ public class Project {
         this.name = name;
     }
 
-    public GregorianCalendar getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) throws ParseException {
-        this.startDate.setTime(F.parse(startDate));
+    public void setStartDate(Date startDate){
+        this.startDate = startDate;
     }
 
-    public GregorianCalendar getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) throws ParseException {
-        this.endDate.setTime(F.parse(endDate));
+    public void setEndDate(Date endDate){
+        this.endDate = endDate;
     }
 
     public double getInvestment() {
@@ -91,9 +104,12 @@ public class Project {
 
     public static void main(String[] args) throws ParseException {
 //        NormalStaff A = new NormalStaff("Nguyen Van A", "abc@gmail.com", "nam",)
-        Project p1 = new Project("lập trình java", "1/1/2022", "1/2/2022", 1000.0);
-        Project p2 = new Project("lập trình C", "7/1/2022", "7/2/2022", 3000.0);
-        p1.showSingle();
-        p2.showSingle();
+//        Project p1 = new Project("lập trình java", "1/1/2022", "1/2/2022", 1000.0);
+//        Project p2 = new Project("lập trình C", "7/1/2022", "7/2/2022", 3000.0);
+//        p1.showSingle();
+//        p2.showSingle();
+        Project p = new Project();
+        p.add();
+        p.showSingle();
     }
 }
