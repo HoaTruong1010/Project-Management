@@ -38,7 +38,7 @@ public abstract class Staff {
         System.out.print("Nhập giới tính: ");
         this.gender = scanner.nextLine();
         System.out.print("Nhập ngày sinh: ");
-        this.dateOfBirth = scanner.next();
+//        this.dateOfBirth = scanner.next();
         System.out.print("Nhập hệ số lương: ");
         this.factor = scanner.nextDouble();
     }
@@ -60,9 +60,7 @@ public abstract class Staff {
     }
 
     //Tính lương phụ cấp
-    public abstract double getGrant() {
-        return 0;
-    }
+    public abstract double getGrant();
 
     public String getFullName() {
         return fullName;
