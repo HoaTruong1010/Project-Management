@@ -6,8 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Quan_Ly_Du_An" />
-        <module name="Resource Code" />
+        <module name="Project_Management" />
       </profile>
     </annotationProcessing>
   </component>
