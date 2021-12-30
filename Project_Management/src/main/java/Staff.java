@@ -1,9 +1,7 @@
-package StaffManagement;
-
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
-public class Staff {
+public abstract class Staff {
     private String id;
     private String fullName;
     private String email;
@@ -12,16 +10,16 @@ public class Staff {
     private static int count;
     protected static final double salary = 6000000;
     private double factor;
-//    protected ProjectManageMent Projects;
+    protected ProjectManagement Projects;
 //    protected Department department;
-    Scanner scanner = new Scanner(System.in);
-
-    public Staff() {
-        super();
-    }
+    public static final Scanner scanner = new Scanner(System.in);
+//  gán giá trị tất cả thuộc tính bằng null + chưa có khối khởi động tăng mã nv
+//    public Staff() {
+//        super();
+//    }
 
     public Staff(String name, String mail, String gen, GregorianCalendar date, double f) {
-        super();
+//        super();
         this.fullName = name;
         this.email = mail;
         this.gender = gen;
@@ -40,7 +38,7 @@ public class Staff {
         System.out.print("Nhập giới tính: ");
         this.gender = scanner.nextLine();
         System.out.print("Nhập ngày sinh: ");
-        this.dateOfBirth = scanner.next;
+        this.dateOfBirth = scanner.next();
         System.out.print("Nhập hệ số lương: ");
         this.factor = scanner.nextDouble();
     }
@@ -62,7 +60,7 @@ public class Staff {
     }
 
     //Tính lương phụ cấp
-    public double getGrant() {
+    public abstract double getGrant() {
         return 0;
     }
 
@@ -97,7 +95,6 @@ public class Staff {
     public void setDateOfBirth(GregorianCalendar dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-
 
     public double getFactor() {
         return factor;
