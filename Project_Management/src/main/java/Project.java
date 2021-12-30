@@ -27,6 +27,16 @@ public class Project {
                         "- Phi dau tu: %.1f\n", this.id, this.name, F.format(this.startDate.getTime()),
                 F.format(this.endDate.getTime()), this.investment);
     }
+    public void change (Project x) {
+        this.name = x.name;
+        this.investment = x.investment;
+        this.endDate = x.endDate;
+        this.startDate = x.startDate;
+    }
+
+    public int compareTo(Project x) {
+        return (this.investment < x.investment) ? -1 : (this.investment > x.investment ? 1 : 0);
+    }
 
     public static int getCount() {
         return count;
