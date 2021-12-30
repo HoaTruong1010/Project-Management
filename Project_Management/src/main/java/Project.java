@@ -24,7 +24,7 @@ public class Project {
 
     public void show() {
         System.out.printf("- Ma du an: %s\n- Ten du an: %s\n- Thoi gian: %s - %s\n" +
-                "- Phi dau tu: %.1f\n", this.id, this.name, F.format(this.startDate.getTime()),
+                        "- Phi dau tu: %.1f\n", this.id, this.name, F.format(this.startDate.getTime()),
                 F.format(this.endDate.getTime()), this.investment);
     }
 
@@ -70,6 +70,8 @@ public class Project {
 
     public static void main(String[] args) throws ParseException {
         Project p1 = new Project("lập trình java", "1/1/2022", "1/2/2022", 1000.0);
+        Project p2 = new Project("lập trình C", "7/1/2022", "7/2/2022", 3000.0);
         p1.show();
+        p2.show();
     }
 }
