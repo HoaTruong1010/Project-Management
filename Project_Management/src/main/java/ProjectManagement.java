@@ -15,6 +15,7 @@ public class ProjectManagement {
 
     public void add() throws ParseException {
         Project x = new Project();
+        System.out.println("Nhap du an so: " + x.getId());
         x.importProject();
         this.listProjects.add(x);
     }
@@ -42,15 +43,5 @@ public class ProjectManagement {
 
     public void setListProjects(List<Project> listProjects) {
         this.listProjects = listProjects;
-    }
-
-    public static void main(String[] args) throws ParseException {
-        ProjectManagement list = new ProjectManagement();
-        list.add(new Project("lập trình java", "1/1/2022", "1/2/2022", 3000.0));
-        list.add( new Project("lập trình C", "7/1/2022", "7/2/2022", 2000.0));
-        list.add();
-        list.showList();
-        list.sortInvestment();
-        list.showList();
     }
 }

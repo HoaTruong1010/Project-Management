@@ -11,11 +11,13 @@ public class Project {
     private Date startDate , endDate ;
     private double investment;
     private NormalStaff manager;
+    private StaffManagement Staffs;
 
     {
         this.id = String.format("%03d", ++count);
         startDate = new Date();
         endDate = new Date();
+        Staffs = new StaffManagement();
     }
 
     public Project() {
@@ -50,6 +52,7 @@ public class Project {
         this.endDate = F.parse(SC.nextLine());
         System.out.print("Nhap phi dau tu: ");
         this.investment = SC.nextDouble();
+        SC.nextLine();
     }
 
     public void showSingle() {
@@ -100,16 +103,5 @@ public class Project {
 
     public void setInvestment(double investment) {
         this.investment = investment;
-    }
-
-    public static void main(String[] args) throws ParseException {
-//        NormalStaff A = new NormalStaff("Nguyen Van A", "abc@gmail.com", "nam",)
-//        Project p1 = new Project("lập trình java", "1/1/2022", "1/2/2022", 1000.0);
-//        Project p2 = new Project("lập trình C", "7/1/2022", "7/2/2022", 3000.0);
-//        p1.showSingle();
-//        p2.showSingle();
-        Project p = new Project();
-        p.importProject();
-        p.showSingle();
     }
 }
