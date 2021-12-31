@@ -41,7 +41,7 @@ public class Project {
         this.investment = x.investment;
     }
 
-    public void add() throws ParseException {
+    public void importProject() throws ParseException {
         System.out.print("Nhap ten du an: ");
         this.name = SC.nextLine();
         System.out.print("Nhap ngay bat dau: ");
@@ -109,7 +109,7 @@ public class Project {
 //        p1.showSingle();
 //        p2.showSingle();
         Project p = new Project();
-        p.add();
+        p.importProject();
         p.showSingle();
     }
 }

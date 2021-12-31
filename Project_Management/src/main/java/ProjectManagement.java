@@ -15,7 +15,7 @@ public class ProjectManagement {
 
     public void add() throws ParseException {
         Project x = new Project();
-        x.add();
+        x.importProject();
         this.listProjects.add(x);
     }
 
@@ -24,7 +24,7 @@ public class ProjectManagement {
     }
 
     public void showList() {
-        System.out.println("----Danh sach du an----");
+        System.out.println("----DANH SACH DU AN----");
         this.listProjects.forEach( x -> x.showSingle() );
     }
 
