@@ -7,23 +7,23 @@ public class StaffManagement {
 
     //Hiển thị danh sách
     public void showList() {
-        this.getListStaffs().forEach(Staff::showSingle);
+        this.listStaffs.forEach(Staff::showSingle);
     }
 
     //Thêm nhân viên
     public void add(Staff p) {
-        this.getListStaffs().add(p);
+        this.listStaffs.add(p);
     }
 
     //Xoá nhân viên
     public void delete(Staff p) {
-       // this.listStaffs.removeIf();
+        this.listStaffs.remove(p);
     }
 
-    //Thay đổi nhân viên
-    public void change(Staff p) {
-
-    }
+    //Chỉnh sửa nhân viên
+//    public void change(Staff p) {
+//
+//    }
 
     //Tìm nhân viên theo phòng ban
     public ArrayList<Staff> findDepartment(String name) {
