@@ -27,7 +27,7 @@ public class Designer extends Staff {
     @Override
     public void showSingle() {
         super.showSingle();
-        System.out.printf("Số project tham gia: %d\n", this.numProject);
+        System.out.printf("- Số project tham gia: %d\n", this.numProject);
     }
 
     public double getGrant() {

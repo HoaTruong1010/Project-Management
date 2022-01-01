@@ -25,7 +25,7 @@ public class Manager extends NormalStaff {
     @Override
     public void showSingle() {
         super.showSingle();
-        System.out.printf("Ngày nhậm chức: %s\n", F.format(this.inauguralDay));
+        System.out.printf("- Ngày nhậm chức: %s\n", F.format(this.inauguralDay));
     }
 
     public Date getInauguralDay() {

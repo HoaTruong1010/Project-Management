@@ -28,7 +28,7 @@ public class Programmer extends Staff {
     @Override
     public void showSingle() {
         super.showSingle();
-        System.out.printf("Số giờ làm thêm: %d\n", this.OT);
+        System.out.printf("- Số giờ làm thêm: %d\n", this.OT);
     }
 
     public double getGrant() {

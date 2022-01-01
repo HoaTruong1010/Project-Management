@@ -24,7 +24,7 @@ public class Tester extends Staff {
     @Override
     public void showSingle() {
         super.showSingle();
-        System.out.printf("Số lỗi quan trọng phát hiện: %d\n", this.getError());
+        System.out.printf("- Số lỗi quan trọng phát hiện: %d\n", this.getError());
     }
 
     public double getGrant() {
