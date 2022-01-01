@@ -1,36 +1,38 @@
-import java.util.GregorianCalendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public abstract class Staff {
+    public static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
     private String id;
     private String fullName;
     private String email;
     private String gender;
-    private GregorianCalendar dateOfBirth;
+    private Date dateOfBirth;
     private static int count;
     protected static final double salary = 6000000;
     private double factor;
-    protected ProjectManagement Projects;
-//    protected Department department;
+    private ProjectManagement Projects;
+//    private Department department;
     public static final Scanner scanner = new Scanner(System.in);
-//  gán giá trị tất cả thuộc tính bằng null + chưa có khối khởi động tăng mã nv
-//    public Staff() {
-//        super();
-//    }
+//   chưa có khối khởi động tăng mã nv
+    public Staff() {
+        this.id = String.format("%03d", count++);
+    }
 
-    public Staff(String name, String mail, String gen, GregorianCalendar date, double f) {
-//        super();
-        this.fullName = name;
-        this.email = mail;
-        this.gender = gen;
-        this.dateOfBirth = date;
-        this.factor = f;
+    public Staff(String name, String mail, String gen, String date, double f) throws ParseException {
+        this.fullName = null;
+        this.email = null;
+        this.gender = null;
+        this.dateOfBirth = F.parse(date);
+        this.factor = 0.00;
     }
 
     //Nhập 1 nhân viên
-    public void importStaff() {
-        System.out.print("Nhập mã nhân viên: ");
-        this.id = scanner.nextLine();
+    public void importStaff() throws ParseException {
+//        System.out.print("Nhập mã nhân viên: ");
+//        this.id = scanner.nextLine();
         System.out.print("Nhập họ tên nhân viên: ");
         this.fullName = scanner.nextLine();
         System.out.print("Nhập email: ");
@@ -38,7 +40,7 @@ public abstract class Staff {
         System.out.print("Nhập giới tính: ");
         this.gender = scanner.nextLine();
         System.out.print("Nhập ngày sinh: ");
-        this.dateOfBirth = scanner.next();
+        this.dateOfBirth = F.parse(scanner.nextLine());
         System.out.print("Nhập hệ số lương: ");
         this.factor = scanner.nextDouble();
     }
@@ -49,7 +51,7 @@ public abstract class Staff {
         System.out.printf("Họ tên: %s\n", this.fullName);
         System.out.printf("Email: %s\n", this.email);
         System.out.printf("Giới tính: %s\n", this.gender);
-        System.out.printf("Ngày sinh: %s\n", this.dateOfBirth);
+        System.out.printf("Ngày sinh: %s\n", F.format(this.getDateOfBirth()));
         System.out.printf("Hệ số: %.2f\n", this.factor);
         //System.out.printf("Phòng ban: %s\n", this.department);
     }
@@ -60,9 +62,7 @@ public abstract class Staff {
     }
 
     //Tính lương phụ cấp
-    public abstract double getGrant() {
-        return 0;
-    }
+    public abstract double getGrant();
 
     public String getFullName() {
         return fullName;
@@ -88,19 +88,19 @@ public abstract class Staff {
         this.gender = gender;
     }
 
-    public GregorianCalendar getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(GregorianCalendar dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
     public double getFactor() {
         return factor;
     }
 
     public void setFactor(double factor) {
         this.factor = factor;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 }

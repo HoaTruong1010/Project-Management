@@ -1,3 +1,5 @@
+import java.text.ParseException;
+
 public class Programmer extends Staff {
     private static final double OTSalary = 25000;
     private int OT;
@@ -8,9 +10,14 @@ public class Programmer extends Staff {
         super();
     }
 
-    public Programmer(int OT) {
-        super();
-        this.OT = OT;
+    public Programmer(String name, String mail, String gen, String date, double f) throws ParseException {
+        super(name, mail, gen, date, f);
+    }
+
+    public void importStaff() throws ParseException {
+        super.importStaff();
+        System.out.print("Nhập số giờ làm thêm: ");
+        this.OT = scanner.nextInt();
     }
 
     public void showSingle() {
