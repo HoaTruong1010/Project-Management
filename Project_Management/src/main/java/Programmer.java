@@ -17,7 +17,11 @@ public class Programmer extends Staff {
     public void importStaff() throws ParseException {
         super.importStaff();
         System.out.print("Nhập số giờ làm thêm: ");
-        this.OT = scanner.nextInt();
+        do {
+            this.OT = scanner.nextInt();
+            if (this.OT < 0) System.out.println("Vui lòng nhập số nguyên dương!");
+        } while (this.OT < 0);
+
     }
 
     public void showSingle() {

@@ -14,7 +14,10 @@ public class Tester extends Staff {
     public void importStaff() throws ParseException {
         super.importStaff();
         System.out.print("Nhập số lỗi quan trọng phát hiện: ");
-        this.setError(scanner.nextInt());
+        do {
+            this.error = scanner.nextInt();
+            if (this.error < 0) System.out.println("Vui lòng nhập số nguyên dương!");
+        } while (this.error < 0);
     }
 
     public void showSingle() {

@@ -16,7 +16,11 @@ public class Designer extends Staff {
     public void importStaff() throws ParseException {
         super.importStaff();
         System.out.print("Nhập số lượng project tham gia: ");
-        this.numProject = scanner.nextInt();
+        do {
+            this.numProject = scanner.nextInt();
+            if (this.numProject < 0 || this.numProject > 3) System.out.println("Vui lòng nhập số nguyên dương!");
+        } while (this.numProject < 0 || this.numProject > 3);
+
     }
 
     public void showSingle() {
