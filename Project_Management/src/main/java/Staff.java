@@ -51,7 +51,7 @@ public abstract class Staff {
         System.out.printf("Họ tên: %s\n", this.fullName);
         System.out.printf("Email: %s\n", this.email);
         System.out.printf("Giới tính: %s\n", this.gender);
-        System.out.printf("Ngày sinh: %s\n", F.format(this.getDateOfBirth()));
+        System.out.printf("Ngày sinh: %s\n", F.format(this.dateOfBirth));
         System.out.printf("Hệ số: %.2f\n", this.factor);
         //System.out.printf("Phòng ban: %s\n", this.department);
     }
