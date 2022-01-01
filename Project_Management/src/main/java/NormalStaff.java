@@ -9,10 +9,12 @@ public class NormalStaff extends Staff {
         super(name,mail,gen,date,f);
     }
 
+    @Override
     public void importStaff() throws ParseException {
         super.importStaff();
     }
 
+    @Override
     public void showSingle() {
         super.showSingle();
     }

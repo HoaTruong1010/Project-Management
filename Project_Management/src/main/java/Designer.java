@@ -13,6 +13,7 @@ public class Designer extends Staff {
         super(name, mail, gen, date, f);
     }
 
+    @Override
     public void importStaff() throws ParseException {
         super.importStaff();
         System.out.print("Nhập số lượng project tham gia: ");
@@ -23,6 +24,7 @@ public class Designer extends Staff {
 
     }
 
+    @Override
     public void showSingle() {
         super.showSingle();
         System.out.printf("Số project tham gia: %d\n", this.numProject);

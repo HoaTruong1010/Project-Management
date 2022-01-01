@@ -11,6 +11,7 @@ public class Tester extends Staff {
         super(name, mail, gen, date, f);
     }
 
+    @Override
     public void importStaff() throws ParseException {
         super.importStaff();
         System.out.print("Nhập số lỗi quan trọng phát hiện: ");
@@ -20,6 +21,7 @@ public class Tester extends Staff {
         } while (this.error < 0);
     }
 
+    @Override
     public void showSingle() {
         super.showSingle();
         System.out.printf("Số lỗi quan trọng phát hiện: %d\n", this.getError());

@@ -14,6 +14,7 @@ public class Manager extends NormalStaff {
     }
 
     //Nhập
+    @Override
     public void importStaff() throws ParseException {
         super.importStaff();
         System.out.print("Nhập ngày nhậm chức: ");
@@ -21,6 +22,7 @@ public class Manager extends NormalStaff {
     }
 
     //Hiển thị
+    @Override
     public void showSingle() {
         super.showSingle();
         System.out.printf("Ngày nhậm chức: %s\n", F.format(this.inauguralDay));

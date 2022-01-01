@@ -14,6 +14,7 @@ public class Programmer extends Staff {
         super(name, mail, gen, date, f);
     }
 
+    @Override
     public void importStaff() throws ParseException {
         super.importStaff();
         System.out.print("Nhập số giờ làm thêm: ");
@@ -24,6 +25,7 @@ public class Programmer extends Staff {
 
     }
 
+    @Override
     public void showSingle() {
         super.showSingle();
         System.out.printf("Số giờ làm thêm: %d\n", this.OT);
