@@ -14,7 +14,7 @@ public abstract class Staff {
     protected static final double salary = 6000000;
     private double factor;
     private ProjectManagement Projects;
-//    private Department department;
+    private Department department;
     public static final Scanner scanner = new Scanner(System.in);
 //   chưa có khối khởi động tăng mã nv
     public Staff() {
@@ -43,17 +43,15 @@ public abstract class Staff {
         this.dateOfBirth = F.parse(scanner.nextLine());
         System.out.print("Nhập hệ số lương: ");
         this.factor = scanner.nextDouble();
+        System.out.print("Nhập phòng ban trực thuộc: ");
+        //this.department = scanner.nextLine();
     }
 
     //Hiển thị 1 nhân viên
     public void showSingle() {
-        System.out.printf("Mã nhân viên: %s\n", id);
-        System.out.printf("Họ tên: %s\n", this.fullName);
-        System.out.printf("Email: %s\n", this.email);
-        System.out.printf("Giới tính: %s\n", this.gender);
-        System.out.printf("Ngày sinh: %s\n", F.format(this.dateOfBirth));
-        System.out.printf("Hệ số: %.2f\n", this.factor);
-        //System.out.printf("Phòng ban: %s\n", this.department);
+        System.out.printf("- Mã nhân viên: %s\n- Họ tên: %s\n- Email: %s\n" +
+                "- Giới tính: %s\n- Ngày sinh: %s\n- Hệ số: %.2f\n" +
+                "- Phòng ban: %s\n", this.id, this.fullName, this.email, this.gender, F.format(this.dateOfBirth), this.factor, this.department);
     }
 
     //Bảng lương
@@ -102,5 +100,21 @@ public abstract class Staff {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public ProjectManagement getProjects() {
+        return Projects;
+    }
+
+    public void setProjects(ProjectManagement projects) {
+        Projects = projects;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 public class StaffManagement {
     private ArrayList<Staff> listStaffs = new ArrayList<>();
@@ -16,7 +17,7 @@ public class StaffManagement {
 
     //Xoá nhân viên
     public void delete(Staff p) {
-
+       // this.listStaffs.removeIf();
     }
 
     //Thay đổi nhân viên
@@ -24,14 +25,15 @@ public class StaffManagement {
 
     }
 
-    //Tìm phòng ban
+    //Tìm nhân viên theo phòng ban
     public ArrayList<Staff> findDepartment(String name) {
-        return null; //x
+        return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getDepartment().equals(name) == true).collect(Collectors.toList());
     }
 
     //Tìm nhân viên theo tên và ngày sinh
     public ArrayList<Staff> findNameAndDate(String name, Date dateOfBirth) {
-        return null; //x
+        return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getFullName().contains(name) == true
+                                                || p.getDateOfBirth().compareTo(dateOfBirth) == 0).collect(Collectors.toList());
     }
 
     public ArrayList<Staff> getListStaffs() {
