@@ -15,6 +15,11 @@ public class Programmer extends Staff {
         this.OT = ot;
     }
 
+    public Programmer(Programmer p) {
+        super(p);
+        this.OT = p.OT;
+    }
+
     @Override
     public void importStaff() throws ParseException {
         super.importStaff();

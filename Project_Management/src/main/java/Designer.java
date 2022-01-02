@@ -10,8 +10,14 @@ public class Designer extends Staff {
         super();
     }
 
-    public Designer(String name, String mail, String gen, Date date, double f){
+    public Designer(String name, String mail, String gen, Date date, double f, int num){
         super(name, mail, gen, date, f);
+        this.numProject = num;
+    }
+
+    public Designer(Designer p) {
+        super(p);
+        this.numProject = p.numProject;
     }
 
     @Override
