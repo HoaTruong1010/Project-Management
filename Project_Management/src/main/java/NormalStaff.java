@@ -6,8 +6,8 @@ public class NormalStaff extends Staff {
         super();
     }
 
-    public NormalStaff(String name, String mail, String gen, Date date, double f) {
-        super(name, mail, gen, date, f);
+    public NormalStaff(String name, String mail, String gen, Date date) {
+        super(name, mail, gen, date);
     }
 
     public NormalStaff(NormalStaff p) {

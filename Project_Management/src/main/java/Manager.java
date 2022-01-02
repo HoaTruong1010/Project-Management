@@ -8,8 +8,8 @@ public class Manager extends NormalStaff {
         super();
     }
 
-    public Manager(String name, String mail, String gen, Date date,  double f, Date inaugural){
-        super(name, mail, gen, date, f);
+    public Manager(String name, String mail, String gen, Date date, Date inaugural){
+        super(name, mail, gen, date);
         this.inauguralDay = inaugural;
     }
 

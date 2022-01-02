@@ -2,14 +2,14 @@ import java.text.ParseException;
 import java.util.Date;
 
 public class Tester extends Staff {
-    private int error;
+    private int error = 0;
 
     public Tester() {
         super();
     }
 
-    public Tester(String name, String mail, String gen, Date date, double f, int e){
-        super(name, mail, gen, date, f);
+    public Tester(String name, String mail, String gen, Date date, int e){
+        super(name, mail, gen, date);
         this.error = e;
     }
 
@@ -21,20 +21,21 @@ public class Tester extends Staff {
     @Override
     public void importStaff() throws ParseException {
         super.importStaff();
-        System.out.print("Nhập số lỗi quan trọng phát hiện: ");
-        do {
-            this.error = scanner.nextInt();
-            if (this.error < 0) System.out.println("Vui lòng nhập số nguyên dương!");
-        } while (this.error < 0);
     }
 
     @Override
     public void showSingle() {
         super.showSingle();
-        System.out.printf("- Số lỗi quan trọng phát hiện: %d\n", this.getError());
     }
 
     public double getGrant() {
+        System.out.print("Nhập số lỗi quan trọng phát hiện: ");
+        if (this.error == 0) {
+            do {
+                this.error = scanner.nextInt();
+                if (this.error < 0) System.out.println("Vui lòng nhập số nguyên dương!");
+            } while (this.error < 0);
+        }
         return this.error * 200000;
     }
 
