@@ -9,7 +9,7 @@ public abstract class Staff {
     private Date dateOfBirth;
     private static int count = 0;
     protected static final double salary = 6000000;
-    private double factor;
+    private double factor = 0.0;
     private ProjectManagement Projects;
     private Department department;
     public static final Scanner scanner = new Scanner(System.in);
@@ -26,19 +26,17 @@ public abstract class Staff {
         this.dateOfBirth = p.dateOfBirth;
         this.email = p.email;
         this.gender = p.gender;
-        this.factor = p.factor;
     }
 
-    public Staff(String name, String mail, String gen, Date date, double f){
+    public Staff(String name, String mail, String gen, Date date){
         this.fullName = name;
         this.email = mail;
         this.gender = gen;
         this.dateOfBirth = date;
-        this.factor = f;
     }
 
     public Staff(){
-        this(null, null,null,null,0.0);
+        this(null, null,null,null);
     }
 
     //Nhập 1 nhân viên
@@ -51,8 +49,6 @@ public abstract class Staff {
         this.gender = scanner.nextLine();
         System.out.print("Nhập ngày sinh: ");
         this.dateOfBirth = F.parse(scanner.nextLine());
-        System.out.print("Nhập hệ số lương: ");
-        this.factor = scanner.nextDouble();
         System.out.print("Nhập phòng ban trực thuộc: ");
         this.department.setName(scanner.nextLine());
     }
@@ -60,17 +56,21 @@ public abstract class Staff {
     //Hiển thị 1 nhân viên
     public void showSingle() {
         System.out.printf("- Mã nhân viên: %s\n- Họ tên: %s\n- Email: %s\n" +
-                "- Giới tính: %s\n- Ngày sinh: %s\n- Hệ số: %.2f\n" +
+                "- Giới tính: %s\n- Ngày sinh: %s\n" +
                 "- Phòng ban: %s\n", this.id, this.fullName, this.email, this.gender,
-                F.format(this.dateOfBirth), this.factor, this.department.getName());
+                F.format(this.dateOfBirth), this.department.getName());
     }
 
-    //Bảng lương
+    //Tính lương
     public double payroll() {
+        if (this.factor == 0) {
+            System.out.print("Nhập hệ số lương: ");
+            this.factor = scanner.nextDouble();
+        }
         return salary * this.factor + getGrant();
     }
 
-    //Tính lương phụ cấp
+    //Tính phụ cấp
     public abstract double getGrant();
 
     public String getFullName() {
