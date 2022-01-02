@@ -8,8 +8,8 @@ public class Tester extends Staff {
         super();
     }
 
-    public Tester(String name, String mail, String gen, Date date, double f, int e){
-        super(name, mail, gen, date, f);
+    public Tester(String name, String mail, String gen, Date date, int e){
+        super(name, mail, gen, date);
         this.error = e;
     }
 

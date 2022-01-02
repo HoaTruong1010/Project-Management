@@ -10,8 +10,8 @@ public class Programmer extends Staff {
         super();
     }
 
-    public Programmer(String name, String mail, String gen, Date date, double f, int ot){
-        super(name, mail, gen, date, f);
+    public Programmer(String name, String mail, String gen, Date date, int ot){
+        super(name, mail, gen, date);
         this.OT = ot;
     }
 
