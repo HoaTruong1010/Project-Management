@@ -1,4 +1,5 @@
 import java.text.ParseException;
+import java.util.Date;
 
 public class Tester extends Staff {
     private int error;
@@ -7,8 +8,14 @@ public class Tester extends Staff {
         super();
     }
 
-    public Tester(String name, String mail, String gen, String date, double f) throws ParseException {
+    public Tester(String name, String mail, String gen, Date date, double f, int e){
         super(name, mail, gen, date, f);
+        this.error = e;
+    }
+
+    public Tester(Tester p) {
+        super(p);
+        this.error = p.error;
     }
 
     @Override

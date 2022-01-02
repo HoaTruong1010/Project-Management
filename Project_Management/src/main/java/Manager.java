@@ -8,9 +8,14 @@ public class Manager extends NormalStaff {
         super();
     }
 
-    public Manager(String name, String mail, String gen, double f, String date, String inaugural) throws ParseException {
+    public Manager(String name, String mail, String gen, Date date,  double f, Date inaugural){
         super(name, mail, gen, date, f);
-        this.inauguralDay = F.parse(inaugural);
+        this.inauguralDay = inaugural;
+    }
+
+    public Manager(Manager m) {
+        super(m);
+        this.inauguralDay = m.inauguralDay;
     }
 
     //Nhập

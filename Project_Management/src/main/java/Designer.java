@@ -1,4 +1,5 @@
 import java.text.ParseException;
+import java.util.Date;
 
 public class Designer extends Staff {
     private int numProject;
@@ -9,7 +10,7 @@ public class Designer extends Staff {
         super();
     }
 
-    public Designer(String name, String mail, String gen, String date, double f) throws ParseException {
+    public Designer(String name, String mail, String gen, Date date, double f){
         super(name, mail, gen, date, f);
     }
 

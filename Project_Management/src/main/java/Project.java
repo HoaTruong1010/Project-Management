@@ -20,20 +20,12 @@ public class Project {
         Staffs = new StaffManagement();
     }
 
-    public Project() {
-        this.name = null;
-        this.startDate = null;
-        this.endDate = null;
-        this.investment = 0.0;
-    }
-
-    public Project(String n, String start, String end, double inv) throws ParseException {
+    public Project(String n, Date start, Date end, double inv, NormalStaff m){
         this.name = n;
-        this.startDate = F.parse(start);
-        this.endDate = F.parse(end);
+        this.startDate = start;
+        this.endDate = end;
         this.investment = inv;
-//        this.manager = new NormalStaff(m.getFullName(), m.getEmail(), m.getGender(),
-//                m.getDateOfBirth(), m.getFactor());
+        this.manager = new NormalStaff(m);
     }
 
     public Project (Project x) {
@@ -41,6 +33,10 @@ public class Project {
         this.startDate = x.startDate;
         this.endDate = x.endDate;
         this.investment = x.investment;
+    }
+
+    public Project() {
+        this(null, null, null, 0.0, null);
     }
 
     public void importProject() throws ParseException {
