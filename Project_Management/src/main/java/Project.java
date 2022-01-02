@@ -15,25 +15,14 @@ public class Project {
 
     {
         this.id = String.format("%03d", ++count);
-        startDate = new Date();
-        endDate = new Date();
         Staffs = new StaffManagement();
     }
 
-    public Project() {
-        this.name = null;
-        this.startDate = null;
-        this.endDate = null;
-        this.investment = 0.0;
-    }
-
-    public Project(String n, String start, String end, double inv) throws ParseException {
+    public Project(String n, Date start, Date end, double inv){
         this.name = n;
-        this.startDate = F.parse(start);
-        this.endDate = F.parse(end);
+        this.startDate = start;
+        this.endDate = end;
         this.investment = inv;
-//        this.manager = new NormalStaff(m.getFullName(), m.getEmail(), m.getGender(),
-//                m.getDateOfBirth(), m.getFactor());
     }
 
     public Project (Project x) {
@@ -43,14 +32,28 @@ public class Project {
         this.investment = x.investment;
     }
 
+    public Project() {
+        this(null, null, null, 0.0);
+    }
+
     public void importProject() throws ParseException {
-        System.out.print("Nhap ten du an: ");
+        this.startDate = new Date();
+        this.endDate = new Date();
+
+        System.out.print("- Nhap ten du an: ");
         this.name = SC.nextLine();
-        System.out.print("Nhap ngay bat dau: ");
-        this.startDate = F.parse(SC.nextLine());
-        System.out.print("Nhap ngay ket thuc: ");
-        this.endDate = F.parse(SC.nextLine());
-        System.out.print("Nhap phi dau tu: ");
+
+        do {
+            System.out.print("- Nhap ngay bat dau: ");
+            this.startDate = F.parse(SC.nextLine());
+            System.out.print("- Nhap ngay ket thuc: ");
+            this.endDate = F.parse(SC.nextLine()) ;
+            if(this.startDate.after(this.endDate))
+                System.out.println("Nhap sai! Nhap lai!");
+        }
+        while (this.startDate.after(this.endDate));
+
+        System.out.print("- Nhap phi dau tu: ");
         this.investment = SC.nextDouble();
         SC.nextLine();
     }
@@ -103,5 +106,11 @@ public class Project {
 
     public void setInvestment(double investment) {
         this.investment = investment;
+    }
+
+    public static void main(String[] args) throws ParseException {
+        Project p = new Project();
+        p.importProject();
+        p.showSingle();
     }
 }

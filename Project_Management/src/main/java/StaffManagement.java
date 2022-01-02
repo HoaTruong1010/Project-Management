@@ -1,20 +1,8 @@
-
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.stream.Collectors;
-
-public class StaffManagement {
-    private ArrayList<Staff> listStaffs = new ArrayList<>();
-
-    //Hiển thị danh sách
-    public void showList() {
-        this.listStaffs.forEach(Staff::showSingle);
-    }
-
-    //Thêm nhân viên
-=======
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class StaffManagement {
@@ -24,6 +12,16 @@ public class StaffManagement {
         this.listStaffs.add(p);
     }
 
+    public void add(String typeOfStaff){
+        try {
+            Class c = Class.forName(typeOfStaff);
+            Staff p = (Staff) c.getDeclaredConstructor(null).newInstance();
+            p.importStaff();
+            this.listStaffs.add(p);
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
     //Xoá nhân viên
     public void delete(Staff p) {
@@ -44,27 +42,6 @@ public class StaffManagement {
     public ArrayList<Staff> findNameAndDate(String name, Date dateOfBirth) {
         return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getFullName().contains(name) == true
                                                 || p.getDateOfBirth().compareTo(dateOfBirth) == 0).collect(Collectors.toList());
-    }
-
-    public ArrayList<Staff> getListStaffs() {
-        return listStaffs;
-    }
-
-    public void setListStaffs(ArrayList<Staff> listStaffs) {
-
-    public void add(String typeOfStaff) throws ClassNotFoundException {
-        Class c = Class.forName(typeOfStaff);
-        try {
-            Staff p = (Staff) c.getDeclaredConstructor(null).newInstance();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
     }
 
     public void showList() {
