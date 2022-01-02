@@ -1,4 +1,6 @@
 import java.text.ParseException;
+import java.util.GregorianCalendar;
+
 
 public class NormalStaff extends Staff {
     public NormalStaff() {
@@ -20,4 +22,13 @@ public class NormalStaff extends Staff {
     }
 
     public double getGrant() {return 0;};
+=======
+    public NormalStaff(String name, String mail, String gen, GregorianCalendar date, double f) {
+        super(name, mail, gen, date, f);
+    }
+
+    @Override
+    public double getGrant() {
+        return 0;
+    }
 }

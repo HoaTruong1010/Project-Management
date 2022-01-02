@@ -41,6 +41,8 @@ public abstract class Staff {
         this.gender = scanner.nextLine();
         System.out.print("Nhập ngày sinh: ");
         this.dateOfBirth = F.parse(scanner.nextLine());
+//        this.dateOfBirth = scanner.next();
+
         System.out.print("Nhập hệ số lương: ");
         this.factor = scanner.nextDouble();
         System.out.print("Nhập phòng ban trực thuộc: ");
