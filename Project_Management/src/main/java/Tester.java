@@ -2,7 +2,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 public class Tester extends Staff {
-    private int error = 0;
+    private int error;
 
     public Tester() {
         super();
@@ -30,12 +30,10 @@ public class Tester extends Staff {
 
     public double getGrant() {
         System.out.print("Nhập số lỗi quan trọng phát hiện: ");
-        if (this.error == 0) {
-            do {
-                this.error = scanner.nextInt();
-                if (this.error < 0) System.out.println("Vui lòng nhập số nguyên dương!");
-            } while (this.error < 0);
-        }
+        do {
+            this.error = scanner.nextInt();
+            if (this.error < 0) System.out.println("Vui lòng nhập số nguyên dương!");
+        } while (this.error < 0);
         return this.error * 200000;
     }
 
