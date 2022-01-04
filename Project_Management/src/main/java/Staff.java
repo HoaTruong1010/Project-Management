@@ -62,16 +62,15 @@ public abstract class Staff {
     }
 
     //Tính lương
-    public double payroll() {
-        if (this.factor == 0) {
-            System.out.print("Nhập hệ số lương: ");
-            this.factor = scanner.nextDouble();
-        }
+    public double payroll(double f) {
+        this.factor = f;
         return salary * this.factor + getGrant();
     }
 
     //Tính phụ cấp
     public abstract double getGrant();
+
+    public abstract void importGrant();
 
     public String getFullName() {
         return fullName;
