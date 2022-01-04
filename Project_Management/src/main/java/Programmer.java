@@ -3,7 +3,7 @@ import java.util.Date;
 
 public class Programmer extends Staff {
     private static final double OTSalary = 25000;
-    private int OT = 0;
+    private int OT;
     private static final int MAXOT = 30;
 
     public Programmer() {
@@ -32,12 +32,10 @@ public class Programmer extends Staff {
 
     public double getGrant() {
         System.out.print("Nhập số giờ làm thêm: ");
-        if (this.OT == 0) {
-            do {
-              this.OT = scanner.nextInt();
-              if (this.OT < 0) System.out.println("Vui lòng nhập số nguyên dương!");
-            } while (this.OT < 0);
-        }
+        do {
+            this.OT = scanner.nextInt();
+            if (this.OT < 0) System.out.println("Vui lòng nhập số nguyên dương!");
+        } while (this.OT < 0);
         return (this.OT > MAXOT) ? MAXOT * 25000 : this.OT * 25000;
     }
 
