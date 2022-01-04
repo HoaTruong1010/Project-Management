@@ -25,7 +25,7 @@ public class Designer extends Staff {
             System.out.print("Nhập số lượng project tham gia: ");
             this.numProject = scanner.nextInt();
             if (this.numProject <= 0 || this.numProject > MAXPROJECT) System.out.println("Nhập sai! Nhập lại!");
-        } while (this.numProject < 0 || this.numProject > MAXPROJECT);
+        } while (this.numProject <= 0 || this.numProject > MAXPROJECT);
     }
 
     @Override
