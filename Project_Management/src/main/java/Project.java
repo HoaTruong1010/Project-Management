@@ -1,3 +1,4 @@
+import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,7 +11,7 @@ public class Project {
     private String id, name;
     private Date startDate , endDate ;
     private double investment;
-    private NormalStaff manager;
+    private Staff manager;
     private StaffManagement Staffs;
 
     {
@@ -68,6 +69,16 @@ public class Project {
         return (this.investment < x.investment) ? -1 : (this.investment > x.investment ? 1 : 0);
     }
 
+    public void setManager(String typeOfStaff, String name, Date dob) {
+        try {
+            Class c = Class.forName(typeOfStaff);
+            this.manager = (Staff) c.getDeclaredConstructor(null).newInstance();
+            this.manager = this.Staffs.findNameAndDate(name, dob);
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static int getCount() {
         return count;
     }
@@ -108,9 +119,23 @@ public class Project {
         this.investment = investment;
     }
 
-    public static void main(String[] args) throws ParseException {
-        Project p = new Project();
-        p.importProject();
-        p.showSingle();
+    public static void setCount(int count) {
+        Project.count = count;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Staff getManager() {
+        return manager;
+    }
+
+    public StaffManagement getStaffs() {
+        return Staffs;
+    }
+
+    public void setStaffs(StaffManagement staffs) {
+        Staffs = staffs;
     }
 }

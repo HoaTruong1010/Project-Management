@@ -19,23 +19,16 @@ public class Tester extends Staff {
     }
 
     @Override
-    public void importStaff() throws ParseException {
-        super.importStaff();
+    public void importGrant() {
+        do {
+            System.out.print("Nhập số lỗi quan trọng phát hiện: ");
+            this.error = scanner.nextInt();
+            if (this.error < 0) System.out.println("Vui lòng nhập số nguyên dương!");
+        } while (this.error < 0);
     }
 
     @Override
-    public void showSingle() {
-        super.showSingle();
-    }
-
     public double getGrant() {
-        System.out.print("Nhập số lỗi quan trọng phát hiện: ");
-        if (this.error == 0) {
-            do {
-                this.error = scanner.nextInt();
-                if (this.error < 0) System.out.println("Vui lòng nhập số nguyên dương!");
-            } while (this.error < 0);
-        }
         return this.error * 200000;
     }
 

@@ -34,13 +34,13 @@ public class StaffManagement {
 //    }
 
     //Tìm nhân viên theo phòng ban
-    public ArrayList<Staff> findDepartment(String name) {
-        return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getDepartment().equals(name) == true).collect(Collectors.toList());
+    public Staff findDepartment(String name) {
+        return (Staff) this.listStaffs.stream().filter(p -> p.getDepartment().equals(name) == true).collect(Collectors.toList());
     }
 
     //Tìm nhân viên theo tên và ngày sinh
-    public ArrayList<Staff> findNameAndDate(String name, Date dateOfBirth) {
-        return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getFullName().contains(name) == true
+    public Staff findNameAndDate(String name, Date dateOfBirth) {
+        return (Staff) this.listStaffs.stream().filter(p -> p.getFullName().contains(name) == true
                                                 || p.getDateOfBirth().compareTo(dateOfBirth) == 0).collect(Collectors.toList());
     }
 
