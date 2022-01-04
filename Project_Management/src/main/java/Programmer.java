@@ -3,7 +3,7 @@ import java.util.Date;
 
 public class Programmer extends Staff {
     private static final double OTSalary = 25000;
-    private int OT = 0;
+    private int OT;
     private static final int MAXOT = 30;
 
     public Programmer() {

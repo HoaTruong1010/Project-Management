@@ -2,7 +2,7 @@ import java.text.ParseException;
 import java.util.Date;
 
 public class Tester extends Staff {
-    private int error = 0;
+    private int error;
 
     public Tester() {
         super();
