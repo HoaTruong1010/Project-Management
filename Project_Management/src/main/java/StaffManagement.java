@@ -28,14 +28,9 @@ public class StaffManagement {
         this.listStaffs.remove(p);
     }
 
-    //Chỉnh sửa nhân viên
-//    public void change(Staff p) {
-//
-//    }
-
     //Tìm nhân viên theo phòng ban
-    public Staff findDepartment(String name) {
-        return (Staff) this.listStaffs.stream().filter(p -> p.getDepartment().equals(name) == true).collect(Collectors.toList());
+    public ArrayList<Staff> findDepartment(String name) {
+        return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getDepartment().equals(name) == true).collect(Collectors.toList());
     }
 
     //Tìm nhân viên theo tên và ngày sinh
