@@ -61,8 +61,11 @@ public class Project {
 
     public void showSingle() {
         System.out.printf("- Ma du an: %s\n- Ten du an: %s\n- Thoi gian: %s - %s\n" +
-                        "- Phi dau tu: %.1f\n\n", this.id, this.name, F.format(this.startDate.getTime()),
+                        "- Phi dau tu: %.1f\n", this.id, this.name, F.format(this.startDate.getTime()),
                 F.format(this.endDate.getTime()), this.investment);
+        System.out.println("- Nguoi quan ly du an: ");
+        this.manager.showSingle();
+        System.out.println();
     }
 
     public int compareTo(Project x) {
