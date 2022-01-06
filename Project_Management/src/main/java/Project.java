@@ -12,11 +12,11 @@ public class Project {
     private Date startDate , endDate ;
     private double investment;
     private Staff manager;
-    private StaffManagement Staffs;
+    private StaffManagement staffs;
 
     {
         this.id = String.format("%03d", ++count);
-        Staffs = new StaffManagement();
+        staffs = new StaffManagement();
     }
 
     public Project(String n, Date start, Date end, double inv){
@@ -63,8 +63,10 @@ public class Project {
         System.out.printf("- Ma du an: %s\n- Ten du an: %s\n- Thoi gian: %s - %s\n" +
                         "- Phi dau tu: %.1f\n", this.id, this.name, F.format(this.startDate.getTime()),
                 F.format(this.endDate.getTime()), this.investment);
-        System.out.println("- Nguoi quan ly du an: ");
-        this.manager.showSingle();
+        if (this.manager != null) {
+            System.out.println("- Nguoi quan ly du an: ");
+            this.manager.showSingle();
+        }
         System.out.println();
     }
 
@@ -72,11 +74,13 @@ public class Project {
         return (this.investment < x.investment) ? -1 : (this.investment > x.investment ? 1 : 0);
     }
 
-    public void setManager(String typeOfStaff, String name, Date dob) {
+    public void setManager(String typeOfStaff, String id) {
         try {
             Class c = Class.forName(typeOfStaff);
             this.manager = (Staff) c.getDeclaredConstructor(null).newInstance();
-            this.manager = this.Staffs.findNameAndDate(name, dob);
+            int i = this.staffs.findId(id);
+            if(i != 0)
+                this.manager = this.staffs.getListStaffs().get(i);
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -135,10 +139,10 @@ public class Project {
     }
 
     public StaffManagement getStaffs() {
-        return Staffs;
+        return staffs;
     }
 
     public void setStaffs(StaffManagement staffs) {
-        Staffs = staffs;
+        staffs = staffs;
     }
 }

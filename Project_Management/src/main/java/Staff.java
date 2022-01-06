@@ -72,6 +72,14 @@ public abstract class Staff {
 
     public abstract void importGrant();
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getFullName() {
         return fullName;
     }
