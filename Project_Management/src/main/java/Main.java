@@ -14,7 +14,7 @@ public class Main {
         List<Project> projectsFound;
         Date d;
         int choice, choice2, choice2_5, choice2_8;
-        int choice1, choice1_5, choice1_6;
+        int choice1, choice1_6;
         boolean init = false;
         String idProjects, idStaff, inName;
         int temp, tempStaff;
