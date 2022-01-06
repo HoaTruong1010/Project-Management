@@ -66,7 +66,7 @@ public class Main {
                                         System.out.println("Da xoa nhan vien thanh cong!\n");
                                     }
                                     else
-                                        System.out.println("Khong ton tai nhan vien co ma nay!\n");
+                                        System.out.println("Khong tim thay nhan vien!!\n");
                                 }
                                 else
                                     System.out.println("Danh sach rong! Vui long them nhan vien\n");
@@ -81,7 +81,7 @@ public class Main {
                                         System.out.println("Chinh sua thanh cong!\n");
                                     }
                                     else
-                                        System.out.println("Khong ton tai nhan vien co ma nay!\n");
+                                        System.out.println("Khong tim thay nhan vien!!\n");
                                 }
                                 else
                                     System.out.println("Danh sach rong! Vui long them nhan vien\n");
@@ -95,7 +95,7 @@ public class Main {
                                         System.out.println();
                                     }
                                     else
-                                        System.out.println("Khong ton tai nhan vien co ma nay!\n");
+                                        System.out.println("Khong tim thay nhan vien!\n");
                                 }
                                 else
                                     System.out.println("Danh sach rong! Vui long them nhan vien\n");
