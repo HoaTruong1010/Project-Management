@@ -28,8 +28,16 @@ public class ProjectManagement {
         this.listProjects.forEach( x -> x.showSingle() );
     }
 
-    public Project findNameAndStart (String name, Date start) {
-        return this.listProjects.stream().filter(x -> x.getName().equals(name) && x.getStartDate().equals(start)).findFirst().map(Project::new).orElse(null);
+    public List<Project> findNameAndStart (String name, Date start) {
+        return (List<Project>) this.listProjects.stream().filter(x -> x.getName().equalsIgnoreCase(name) && x.getStartDate().equals(start));
+    }
+
+    public int findId( String id ) {
+        for (int i = 0; i < this.listProjects.size(); i++) {
+            if( this.listProjects.get(i).getId().equals(id))
+                return i;
+        }
+        return -1;
     }
 
     public void sortInvestment() {

@@ -2,7 +2,9 @@ import java.text.ParseException;
 import java.util.Date;
 
 public class Designer extends Staff {
-    private int numProject;
+
+    private int numProject = 0;
+
     private static final int MAXPROJECT = 3;
 
     public Designer() {
@@ -20,21 +22,16 @@ public class Designer extends Staff {
     }
 
     @Override
-    public void importStaff() throws ParseException {
-        super.importStaff();
+    public void importGrant() {
+        do {
+            System.out.print("Nhập số lượng project tham gia: ");
+            this.numProject = scanner.nextInt();
+            if (this.numProject <= 0 || this.numProject > MAXPROJECT) System.out.println("Nhập sai! Nhập lại!");
+        } while (this.numProject <= 0 || this.numProject > MAXPROJECT);
     }
 
     @Override
-    public void showSingle() {
-        super.showSingle();
-    }
-
     public double getGrant() {
-        System.out.print("Nhập số lượng project tham gia: ");
-        do {
-            this.numProject = scanner.nextInt();
-            if (this.numProject < 0 || this.numProject > 3) System.out.println("Vui lòng nhập số nguyên dương!");
-        } while (this.numProject <= 0 || this.numProject > MAXPROJECT);
         return (this.numProject - 1) * 200000;
     }
 

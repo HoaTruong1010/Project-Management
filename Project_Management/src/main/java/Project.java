@@ -1,3 +1,4 @@
+import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,12 +11,12 @@ public class Project {
     private String id, name;
     private Date startDate , endDate ;
     private double investment;
-    private NormalStaff manager;
-    private StaffManagement Staffs;
+    private Staff manager;
+    private StaffManagement staffs;
 
     {
         this.id = String.format("%03d", ++count);
-        Staffs = new StaffManagement();
+        staffs = new StaffManagement();
     }
 
     public Project(String n, Date start, Date end, double inv){
@@ -60,12 +61,29 @@ public class Project {
 
     public void showSingle() {
         System.out.printf("- Ma du an: %s\n- Ten du an: %s\n- Thoi gian: %s - %s\n" +
-                        "- Phi dau tu: %.1f\n\n", this.id, this.name, F.format(this.startDate.getTime()),
+                        "- Phi dau tu: %.1f\n", this.id, this.name, F.format(this.startDate.getTime()),
                 F.format(this.endDate.getTime()), this.investment);
+        if (this.manager != null) {
+            System.out.println("- Nguoi quan ly du an: ");
+            this.manager.showSingle();
+        }
+        System.out.println();
     }
 
     public int compareTo(Project x) {
         return (this.investment < x.investment) ? -1 : (this.investment > x.investment ? 1 : 0);
+    }
+
+    public void setManager(String typeOfStaff, String id) {
+        try {
+            Class c = Class.forName(typeOfStaff);
+            this.manager = (Staff) c.getDeclaredConstructor(null).newInstance();
+            int i = this.staffs.findId(id);
+            if(i != 0)
+                this.manager = this.staffs.getListStaffs().get(i);
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
+            e.printStackTrace();
+        }
     }
 
     public static int getCount() {
@@ -108,9 +126,23 @@ public class Project {
         this.investment = investment;
     }
 
-    public static void main(String[] args) throws ParseException {
-        Project p = new Project();
-        p.importProject();
-        p.showSingle();
+    public static void setCount(int count) {
+        Project.count = count;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public Staff getManager() {
+        return manager;
+    }
+
+    public StaffManagement getStaffs() {
+        return staffs;
+    }
+
+    public void setStaffs(StaffManagement staffs) {
+        staffs = staffs;
     }
 }

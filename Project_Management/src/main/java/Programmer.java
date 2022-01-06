@@ -21,21 +21,16 @@ public class Programmer extends Staff {
     }
 
     @Override
-    public void importStaff() throws ParseException {
-        super.importStaff();
-    }
-
-    @Override
-    public void showSingle() {
-        super.showSingle();
-    }
-
-    public double getGrant() {
-        System.out.print("Nhập số giờ làm thêm: ");
+    public void importGrant() {
         do {
+            System.out.print("Nhập số giờ làm thêm: ");
             this.OT = scanner.nextInt();
             if (this.OT < 0) System.out.println("Vui lòng nhập số nguyên dương!");
         } while (this.OT < 0);
+    }
+
+    @Override
+    public double getGrant() {
         return (this.OT > MAXOT) ? MAXOT * 25000 : this.OT * 25000;
     }
 

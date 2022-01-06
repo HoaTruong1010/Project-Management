@@ -28,20 +28,23 @@ public class StaffManagement {
         this.listStaffs.remove(p);
     }
 
-    //Chỉnh sửa nhân viên
-//    public void change(Staff p) {
-//
-//    }
-
     //Tìm nhân viên theo phòng ban
     public ArrayList<Staff> findDepartment(String name) {
-        return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getDepartment().equals(name) == true).collect(Collectors.toList());
+        return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getDepartment().getName().equalsIgnoreCase(name) == true).collect(Collectors.toList());
     }
 
     //Tìm nhân viên theo tên và ngày sinh
     public ArrayList<Staff> findNameAndDate(String name, Date dateOfBirth) {
         return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getFullName().contains(name) == true
-                                                || p.getDateOfBirth().compareTo(dateOfBirth) == 0).collect(Collectors.toList());
+                                                && p.getDateOfBirth().compareTo(dateOfBirth) == 0).collect(Collectors.toList());
+    }
+
+    public int findId(String id) {
+        for (int i = 0; i < this.listStaffs.size(); i++) {
+            if(this.listStaffs.get(i).getId().equals(id))
+                return i;
+        }
+        return 0;
     }
 
     public void showList() {
