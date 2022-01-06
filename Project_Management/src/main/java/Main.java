@@ -35,7 +35,6 @@ public class Main {
                         switch (choice1) {
                             case 1:
                                 int n = 0;
-                                String nv;
                                 System.out.println("Nhap so luong nhan vien can them: ");
                                 do {
                                     n = sc.nextInt();
@@ -43,7 +42,7 @@ public class Main {
                                     else {
                                         for (int i = 0; i < n; i++) {
                                             System.out.println("Nhap loai nhan vien can them: ");
-                                            staffs.add(nv = sc.nextLine());
+                                            staffs.add(sc.nextLine());
                                         }
                                         System.out.println("Da them thanh cong!\n");
                                     }
