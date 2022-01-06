@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProjectManagement {
     private static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
@@ -29,7 +30,7 @@ public class ProjectManagement {
     }
 
     public List<Project> findNameAndStart (String name, Date start) {
-        return (List<Project>) this.listProjects.stream().filter(x -> x.getName().equalsIgnoreCase(name) && x.getStartDate().equals(start));
+        return this.listProjects.stream().filter(x -> x.getName().equalsIgnoreCase(name) && x.getStartDate().equals(start)).collect(Collectors.toList());
     }
 
     public int findId( String id ) {
@@ -37,7 +38,7 @@ public class ProjectManagement {
             if( this.listProjects.get(i).getId().equals(id))
                 return i;
         }
-        return -1;
+        return 0;
     }
 
     public void sortInvestment() {
