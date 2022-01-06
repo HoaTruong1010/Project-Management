@@ -14,13 +14,13 @@ public class Main {
         List<Project> projectsFound;
         Date d;
         int choice, choice2, choice2_5, choice2_8;
-        int choice1, choice1_1;
+        int choice1, choice1_5, choice1_6;
         boolean init = false;
         String idProjects, idStaff, inName;
         int temp, tempStaff;
         do {
             System.out.println("---- MENU ----");
-            System.out.print("1. Quan ly nhan vien\n2. Quan ly du an\n3. Thoat\nBan chon: ");
+            System.out.println("1. Quan ly nhan vien\n2. Quan ly du an\n3. Thoat\nBan chon: ");
             choice = sc.nextByte();
             switch (choice) {
                 case 1:
@@ -30,7 +30,7 @@ public class Main {
                                 "3. Xoa nhan vien\n4. Sua thong tin nhan vien\n" +
                                 "5. Tinh luong nhan vien\n6. Tim kiem nhan vien\n" +
                                 "7. Xem danh sach du an cua nhan vien can xem\n" +
-                                "Thoat\nBan chon: \n");
+                                "Thoat\nBan chon: ");
                         choice1 = sc.nextByte();
                         switch (choice1) {
                             case 1:
@@ -44,7 +44,7 @@ public class Main {
                                             System.out.println("Nhap loai nhan vien can them: ");
                                             staffs.add(sc.nextLine());
                                         }
-                                        System.out.println("Da them thanh cong!\n");
+                                        System.out.println("Da them thanh cong!");
                                     }
                                 } while (n <= 0);
                                 init = true;
@@ -53,7 +53,7 @@ public class Main {
                                 if (init)
                                     staffs.showList();
                                 else
-                                    System.out.println("Danh sach rong! Vui long them nhan vien\n");
+                                    System.out.println("Danh sach rong! Vui long them nhan vien");
                                 break;
                             case 3:
                                 if (init) {
@@ -62,13 +62,13 @@ public class Main {
                                     tempStaff = staffs.findId(idStaff);
                                     if (tempStaff >= 0) {
                                         staffs.delete(staffs.getListStaffs().get(tempStaff));
-                                        System.out.println("Da xoa nhan vien thanh cong!\n");
+                                        System.out.println("Da xoa nhan vien thanh cong!");
                                     }
                                     else
-                                        System.out.println("Khong tim thay nhan vien!!\n");
+                                        System.out.println("Khong tim thay nhan vien!!");
                                 }
                                 else
-                                    System.out.println("Danh sach rong! Vui long them nhan vien\n");
+                                    System.out.println("Danh sach rong! Vui long them nhan vien");
                                 break;
                             case 4:
                                 if (init) {
@@ -77,13 +77,13 @@ public class Main {
                                     tempStaff = staffs.findId(idStaff);
                                     if (tempStaff >= 0) {
                                         staffs.edit(staffs.getListStaffs().get(tempStaff));
-                                        System.out.println("Chinh sua thanh cong!\n");
+                                        System.out.println("Chinh sua thanh cong!");
                                     }
                                     else
-                                        System.out.println("Khong tim thay nhan vien!!\n");
+                                        System.out.println("Khong tim thay nhan vien!");
                                 }
                                 else
-                                    System.out.println("Danh sach rong! Vui long them nhan vien\n");
+                                    System.out.println("Danh sach rong! Vui long them nhan vien");
                                 break;
                             case 5:
                                 if (init) {
@@ -91,50 +91,53 @@ public class Main {
                                     idStaff = sc.nextLine();
                                     tempStaff = staffs.findId(idStaff);
                                     if (tempStaff >= 0) {
-                                        System.out.println();
+                                        staffs.getListStaffs().get(tempStaff).importGrant();
+                                        staffs.getListStaffs().get(tempStaff).importFactor();
+                                        System.out.println("Luong: ");
+                                        staffs.getListStaffs().get(tempStaff).payroll();
                                     }
                                     else
-                                        System.out.println("Khong tim thay nhan vien!\n");
+                                        System.out.println("Khong tim thay nhan vien!");
                                 }
                                 else
-                                    System.out.println("Danh sach rong! Vui long them nhan vien\n");
+                                    System.out.println("Danh sach rong! Vui long them nhan vien");
                                 break;
                             case 6:
                                 if (init) {
-                                    System.out.println("THONG TIN CAN TIM KIEM:\n");
+                                    System.out.println("THONG TIN CAN TIM KIEM:");
                                     System.out.println("1. Tim nhan vien theo ho ten, ngay sinh\n" +
                                                         "2. Tim nhan vien theo phong ban\nBan chon: ");
-                                    choice1_1 = sc.nextInt();
-                                    switch (choice1_1) {
+                                    choice1_6 = sc.nextInt();
+                                    switch (choice1_6) {
                                         case 1:
                                             System.out.println("Nhap ho ten: ");
                                             inName = sc.nextLine();
-                                            System.out.println("Nhap ngay sinh: ");
+                                            System.out.print("Nhap ngay sinh: ");
                                             d = df.parse(sc.nextLine());
                                             staffFind = staffs.findNameAndDate(inName, d);
                                             if (staffFind.size() > 0) {
-                                                System.out.println("Danh sach nhan vien:\n");
+                                                System.out.println("Danh sach nhan vien:");
                                                 staffFind.forEach(p -> p.showSingle());
                                             }
                                             else
-                                                System.out.println("Khong tim thay nhan vien!\n");
+                                                System.out.println("Khong tim thay nhan vien!");
                                             break;
                                         case 2:
                                             System.out.println("Nhap phong ban: ");
                                             staffFind = staffs.findDepartment(sc.nextLine());
                                             if (staffFind.size() > 0) {
-                                                System.out.println("Danh sach nhan vien:\n");
+                                                System.out.println("Danh sach nhan vien:");
                                                 staffFind.forEach(p -> p.showSingle());
                                             }
                                             else
-                                                System.out.println("Khong tim thay nhan vien!\n");
+                                                System.out.println("Khong tim thay nhan vien!");
                                             break;
                                         default:
-                                            System.out.println("Ban nhap sai lua chon!\n");
+                                            System.out.println("Ban nhap sai lua chon!");
                                     }
                                 }
                                 else
-                                    System.out.println("Danh sach rong! Vui long them nhan vien\n");
+                                    System.out.println("Danh sach rong! Vui long them nhan vien");
                                 break;
                             case 7:
                                 if (init) {
@@ -142,17 +145,17 @@ public class Main {
                                     idStaff = sc.nextLine();
                                     tempStaff = staffs.findId(idStaff);
                                     if (tempStaff >= 0) {
-                                        System.out.println("Danh sach du an:\n");
+                                        System.out.println("Danh sach du an:");
                                         staffs.getListStaffs().get(tempStaff).getProjects().showList();
                                     }
                                     else
-                                        System.out.println("Khong tim thay nhan vien!\n");
+                                        System.out.println("Khong tim thay nhan vien!");
                                 }
                                 else
-                                    System.out.println("Danh sach rong! Vui long them nhan vien\n");
+                                    System.out.println("Danh sach rong! Vui long them nhan vien");
                                 break;
                             default:
-                                System.out.println("Ban chon thoat!\n");
+                                System.out.println("Ban chon thoat!");
                         }
                     } while (choice1 > 0 && choice1 < 8);
                     break;

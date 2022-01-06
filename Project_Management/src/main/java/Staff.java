@@ -61,9 +61,17 @@ public abstract class Staff {
                 F.format(this.dateOfBirth), this.department.getName());
     }
 
+    //Nhập hệ số lương
+    public void importFactor() {
+        do {
+            System.out.print("Nhập hệ số lương của nhân viên: ");
+            this.factor = scanner.nextInt();
+            if (this.factor <= 0) System.out.println("Nhập sai! Nhập lại!");
+        } while (this.factor <= 0);
+    }
+
     //Tính lương
-    public double payroll(double f) {
-        this.factor = f;
+    public double payroll() {
         return salary * this.factor + getGrant();
     }
 
