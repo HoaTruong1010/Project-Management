@@ -81,7 +81,7 @@ public class StaffManagement {
             if(this.listStaffs.get(i).getId().equals(id))
                 return i;
         }
-        return 0;
+        return -1;
     }
 
     public void showList() {

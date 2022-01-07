@@ -38,7 +38,7 @@ public class ProjectManagement {
             if( this.listProjects.get(i).getId().equals(id))
                 return i;
         }
-        return 0;
+        return -1;
     }
 
     public void sortInvestment() {

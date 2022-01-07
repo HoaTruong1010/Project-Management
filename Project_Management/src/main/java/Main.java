@@ -99,7 +99,6 @@ public class Main {
                                         staffs.getListStaffs().get(posStaff).importGrant();
                                         payroll = staffs.getListStaffs().get(posStaff).payroll();
                                         System.out.printf("Luong: %.1f\n", payroll);
-                                        System.out.println("Loai nhan vien" + staffs.getListStaffs().get(posStaff).getClass());
                                     }
                                     else
                                         System.out.println("Khong tim thay nhan vien!");
