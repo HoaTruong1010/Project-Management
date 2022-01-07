@@ -81,6 +81,14 @@ public abstract class Staff {
 
     public abstract void importGrant();
 
+    public static int getCount() {
+        return count;
+    }
+
+    public static void setCount(int count) {
+        Staff.count = count;
+    }
+
     public String getId() {
         return id;
     }
