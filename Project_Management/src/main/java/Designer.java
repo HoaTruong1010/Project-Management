@@ -2,7 +2,9 @@ import java.text.ParseException;
 import java.util.Date;
 
 public class Designer extends Staff {
+
     private int numProject = 0;
+
     private static final int MAXPROJECT = 3;
 
     public Designer() {
