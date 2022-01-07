@@ -65,7 +65,8 @@ public abstract class Staff {
     public void importFactor() {
         do {
             System.out.print("Nhập hệ số lương của nhân viên: ");
-            this.factor = scanner.nextInt();
+            this.factor = scanner.nextDouble();
+            scanner.nextLine();
             if (this.factor <= 0) System.out.println("Nhập sai! Nhập lại!");
         } while (this.factor <= 0);
     }
