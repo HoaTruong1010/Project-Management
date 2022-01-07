@@ -74,16 +74,8 @@ public class Project {
         return (this.investment < x.investment) ? -1 : (this.investment > x.investment ? 1 : 0);
     }
 
-    public void setManager(String typeOfStaff, String id) {
-        try {
-            Class c = Class.forName(typeOfStaff);
-            this.manager = (Staff) c.getDeclaredConstructor(null).newInstance();
-            int i = this.staffs.findId(id);
-            if(i != 0)
-                this.manager = this.staffs.getListStaffs().get(i);
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+    public void setManager(Staff manager) {
+        this.manager = manager;
     }
 
     public static int getCount() {

@@ -23,6 +23,7 @@ public class Tester extends Staff {
         do {
             System.out.print("Nhập số lỗi quan trọng phát hiện: ");
             this.error = scanner.nextInt();
+            scanner.nextLine();
             if (this.error < 0) System.out.println("Vui lòng nhập số nguyên dương!");
         } while (this.error < 0);
     }
