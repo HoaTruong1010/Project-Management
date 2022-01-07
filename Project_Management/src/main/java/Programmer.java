@@ -25,6 +25,7 @@ public class Programmer extends Staff {
         do {
             System.out.print("Nhập số giờ làm thêm: ");
             this.OT = scanner.nextInt();
+            scanner.nextLine();
             if (this.OT < 0) System.out.println("Vui lòng nhập số nguyên dương!");
         } while (this.OT < 0);
     }
