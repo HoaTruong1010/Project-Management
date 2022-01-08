@@ -382,7 +382,7 @@ public class Main {
                                                     else
                                                         System.out.println("Ban chon thoat!");
                                             }
-                                        } while (choice2_8 > 0 && choice2_8 < 3 || size < 5);
+                                        } while (choice2_8 > 0 && choice2_8 < 3 || size < 4);
                                     }
                                     else
                                         System.out.println("KHONG tim thay du an");
