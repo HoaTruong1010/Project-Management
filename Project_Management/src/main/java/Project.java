@@ -1,4 +1,3 @@
-import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,7 +36,7 @@ public class Project {
         this(null, null, null, 0.0);
     }
 
-    public void importProject() throws ParseException {
+    public void inputProject() throws ParseException {
         this.startDate = new Date();
         this.endDate = new Date();
 

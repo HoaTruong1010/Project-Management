@@ -1,4 +1,3 @@
-import java.text.ParseException;
 import java.util.Date;
 
 public class Tester extends Staff {
@@ -19,7 +18,7 @@ public class Tester extends Staff {
     }
 
     @Override
-    public void importGrant() {
+    public void inputGrant() {
         do {
             System.out.print("Nhập số lỗi quan trọng phát hiện: ");
             this.error = scanner.nextInt();

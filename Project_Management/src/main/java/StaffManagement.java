@@ -1,7 +1,6 @@
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
@@ -17,7 +16,7 @@ public class StaffManagement {
         try {
             Class c = Class.forName(typeOfStaff);
             Staff p = (Staff) c.getDeclaredConstructor(null).newInstance();
-            p.importStaff();
+            p.inputStaff();
             this.listStaffs.add(p);
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException | ParseException e) {
             e.printStackTrace();

@@ -16,7 +16,7 @@ public class ProjectManagement {
     public void add() throws ParseException {
         Project x = new Project();
         System.out.println("Nhap du an so: " + x.getId());
-        x.importProject();
+        x.inputProject();
         this.listProjects.add(x);
     }
 

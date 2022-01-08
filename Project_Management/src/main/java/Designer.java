@@ -1,4 +1,3 @@
-import java.text.ParseException;
 import java.util.Date;
 
 public class Designer extends Staff {
@@ -22,7 +21,7 @@ public class Designer extends Staff {
     }
 
     @Override
-    public void importGrant() {
+    public void inputGrant() {
         do {
             System.out.print("Nhập số lượng project tham gia: ");
             this.numProject = scanner.nextInt();
