@@ -40,7 +40,7 @@ public abstract class Staff {
     }
 
     //Nhập 1 nhân viên
-    public void importStaff() throws ParseException {
+    public void inputStaff() throws ParseException {
         System.out.print("Nhập họ tên nhân viên: ");
         this.fullName = scanner.nextLine();
         System.out.print("Nhập email: ");
@@ -57,12 +57,12 @@ public abstract class Staff {
     public void showSingle() {
         System.out.printf("- Mã nhân viên: %s\n- Họ tên: %s\n- Email: %s\n" +
                 "- Giới tính: %s\n- Ngày sinh: %s\n" +
-                "- Phòng ban: %s\n", this.id, this.fullName, this.email, this.gender,
+                "- Phòng ban: %s\n\n", this.id, this.fullName, this.email, this.gender,
                 F.format(this.dateOfBirth), this.department.getName());
     }
 
     //Nhập hệ số lương
-    public void importFactor() {
+    public void inputFactor() {
         do {
             System.out.print("Nhập hệ số lương của nhân viên: ");
             this.factor = scanner.nextDouble();
@@ -79,7 +79,7 @@ public abstract class Staff {
     //Tính phụ cấp
     public abstract double getGrant();
 
-    public abstract void importGrant();
+    public abstract void inputGrant();
 
     public static int getCount() {
         return count;

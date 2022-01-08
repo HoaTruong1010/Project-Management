@@ -1,4 +1,3 @@
-import java.text.ParseException;
 import java.util.Date;
 
 public class Programmer extends Staff {
@@ -21,7 +20,7 @@ public class Programmer extends Staff {
     }
 
     @Override
-    public void importGrant() {
+    public void inputGrant() {
         do {
             System.out.print("Nhập số giờ làm thêm: ");
             this.OT = scanner.nextInt();

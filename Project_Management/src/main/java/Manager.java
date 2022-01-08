@@ -20,8 +20,8 @@ public class Manager extends NormalStaff {
 
     //Nhập
     @Override
-    public void importStaff() throws ParseException {
-        super.importStaff();
+    public void inputStaff() throws ParseException {
+        super.inputStaff();
         System.out.print("Nhập ngày nhậm chức: ");
         this.inauguralDay = F.parse(scanner.nextLine());
     }

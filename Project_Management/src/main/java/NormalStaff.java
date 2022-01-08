@@ -15,7 +15,7 @@ public class NormalStaff extends Staff {
     }
 
     @Override
-    public void importGrant() { }
+    public void inputGrant() { }
 
     @Override
     public double getGrant() {
