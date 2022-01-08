@@ -377,7 +377,7 @@ public class Main {
                                                         System.out.println("KHONG tim thay nhan vien!");
                                                     break;
                                                 default:
-                                                    if (size < 5)
+                                                    if (size < 4)
                                                         System.out.println("So luong nhan vien chua dat toi thieu! Hay them nhan vien!");
                                                     else
                                                         System.out.println("Ban chon thoat!");
