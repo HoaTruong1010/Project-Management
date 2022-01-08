@@ -10,14 +10,14 @@ public abstract class Staff {
     private static int count = 0;
     protected static final double salary = 6000000;
     private double factor = 0.0;
-    private ProjectManagement Projects;
+    private ProjectManagement projects;
     private Department department;
     public static final Scanner scanner = new Scanner(System.in);
 
     {
         this.id = String.format("%03d", ++count);
         dateOfBirth = new Date();
-        Projects = new ProjectManagement();
+        projects = new ProjectManagement();
         department = new Department();
     }
 
@@ -138,11 +138,11 @@ public abstract class Staff {
     }
 
     public ProjectManagement getProjects() {
-        return Projects;
+        return projects;
     }
 
     public void setProjects(ProjectManagement projects) {
-        Projects = projects;
+        projects = projects;
     }
 
     public Department getDepartment() {

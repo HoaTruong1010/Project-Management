@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class ProjectManagement {
     private static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
-    protected List<Project> listProjects = new ArrayList();
+    private List<Project> listProjects = new ArrayList();
 
     public void add(Project x) {
         this.listProjects.add(x);

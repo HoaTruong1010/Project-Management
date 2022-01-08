@@ -179,7 +179,7 @@ public class Main {
                                 init = true;
                                 break;
                             case 2:
-                                size = projects.listProjects.size();
+                                size = projects.getListProjects().size();
                                 if (init && size > 0)
                                     projects.showList();
                                 else
