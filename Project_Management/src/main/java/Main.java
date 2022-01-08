@@ -37,14 +37,14 @@ public class Main {
                         switch (choice1) {
                             case 1:
                                 int n = 0;
-                                System.out.println("Nhap so luong nhan vien can them: ");
+                                System.out.print("Nhap so luong nhan vien can them: ");
                                 do {
                                     n = sc.nextInt();
                                     sc.nextLine();
                                     if (n <= 0) System.out.println("Vui long nhap lai so hop le!");
                                     else {
                                         for (int i = 0; i < n; i++) {
-                                            System.out.println("Nhap loai nhan vien can them: ");
+                                            System.out.println("\nNhap loai nhan vien thu " + (i + 1) + " can them: ");
                                             staffs.add(sc.nextLine());
                                         }
                                         System.out.println("Da them thanh cong!");
@@ -53,7 +53,7 @@ public class Main {
                                 init = true;
                                 break;
                             case 2:
-                                if (init)
+                                if (init && (staffs.getListStaffs().size() != 0))
                                     staffs.showList();
                                 else
                                     System.out.println("Danh sach rong! Vui long them nhan vien");

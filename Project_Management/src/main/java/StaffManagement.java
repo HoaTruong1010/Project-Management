@@ -27,31 +27,27 @@ public class StaffManagement {
     //Edit nhân viên
     public void edit(Staff p) throws ParseException {
         System.out.println("CAC THONG TIN CO THE CHINH SUA\n" +
-                "1. Ma nhan vien\n2. Ho ten\n3. Email\n4. Gioi tinh\n" +
-                "5. Ngay sinh\n6. Phong ban\nBan chon: ");
+                "1. Ho ten\n2. Email\n3. Gioi tinh\n" +
+                "4. Ngay sinh\n5. Phong ban\n6. Thoat\nBan chon: ");
         int temp = Integer.parseInt(Staff.scanner.nextLine());
         switch (temp) {
             case 1:
-                System.out.println("Sua ma nhan vien: ");
-                p.setId(Staff.scanner.nextLine());
-                break;
-            case 2:
                 System.out.println("Sua ho ten nhan vien: ");
                 p.setFullName(Staff.scanner.nextLine());
                 break;
-            case 3:
+            case 2:
                 System.out.println("Sua email nhan vien: ");
                 p.setEmail(Staff.scanner.nextLine());
                 break;
-            case 4:
+            case 3:
                 System.out.println("Sua gioi tinh nhan vien: ");
                 p.setGender(Staff.scanner.nextLine());
                 break;
-            case 5:
+            case 4:
                 System.out.println("Sua ngay sinh nhan vien: ");
                 p.setDateOfBirth(Staff.F.parse(Staff.scanner.nextLine()));
                 break;
-            case 6:
+            case 5:
                 System.out.println("Sua phong ban nhan vien: ");
                 p.getDepartment().setName(Staff.scanner.nextLine());
                 break;
