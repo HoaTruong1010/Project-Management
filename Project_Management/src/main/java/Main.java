@@ -179,7 +179,8 @@ public class Main {
                                 init = true;
                                 break;
                             case 2:
-                                if (init)
+                                size = projects.listProjects.size();
+                                if (init && size > 0)
                                     projects.showList();
                                 else
                                     System.out.println("Chua co du an nao!");
