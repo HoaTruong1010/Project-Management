@@ -37,6 +37,7 @@ public class Main {
                         switch (choice1) {
                             case 1:
                                 int n = 0;
+                                size = staffs.getListStaffs().size();
                                 System.out.print("Nhap so luong nhan vien can them: ");
                                 do {
                                     n = sc.nextInt();
@@ -47,7 +48,10 @@ public class Main {
                                             System.out.print("Nhap loai nhan vien thu " + (i + 1) + " can them: ");
                                             staffs.add(sc.nextLine());
                                         }
-                                        System.out.println("Da them thanh cong!");
+                                        if (staffs.getListStaffs().size() > size)
+                                            System.out.println("Da them thanh cong!");
+                                        else
+                                            System.out.println("Them KHONG thanh cong!");
                                     }
                                 } while (n <= 0);
                                 init = true;
@@ -174,8 +178,12 @@ public class Main {
                         sc.nextLine();
                         switch (choice2) {
                             case 1:
+                                size = projects.getListProjects().size();
                                 projects.add();
-                                System.out.println("Them thanh cong!");
+                                if(projects.getListProjects().size() > size)
+                                    System.out.println("Them thanh cong!");
+                                else
+                                    System.out.println("Them KHONG thanh cong!");
                                 init = true;
                                 break;
                             case 2:
