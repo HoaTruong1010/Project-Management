@@ -72,7 +72,7 @@ public class StaffManagement {
 
     //Tìm nhân viên theo tên và ngày sinh
     public ArrayList<Staff> findNameAndDate(String name, Date dateOfBirth) {
-        return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getFullName().contains(name) == true
+        return (ArrayList<Staff>) this.listStaffs.stream().filter(p -> p.getFullName().equalsIgnoreCase(name) == true
                                                 && p.getDateOfBirth().compareTo(dateOfBirth) == 0).collect(Collectors.toList());
     }
 
