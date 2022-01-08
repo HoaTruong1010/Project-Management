@@ -350,8 +350,8 @@ public class Main {
                                                         idStaff = sc.nextLine();
                                                         posStaff = staffs.findId(idStaff);
                                                         if(posStaff >= 0) {
-                                                            projects.getListProjects().get(posProject).getStaffs().add(staffs.getListStaffs().get(posStaff));
                                                             if (staffs.getListStaffs().get(posStaff).getProjects().getListProjects().size() < 3) {
+                                                                projects.getListProjects().get(posProject).getStaffs().add(staffs.getListStaffs().get(posStaff));
                                                                 staffs.getListStaffs().get(posStaff).getProjects().getListProjects().add(projects
                                                                         .getListProjects().get(posProject));
                                                                 System.out.println("Them thanh cong!");
