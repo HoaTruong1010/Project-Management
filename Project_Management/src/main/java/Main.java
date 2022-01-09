@@ -258,7 +258,7 @@ public class Main {
                                     if(posProject >= 0) {
                                         do {
                                             System.out.print("Chon muc can sua:\n1. Sua ten du an\n2. Sua ngay\n3. Sua phi dau tu\n" +
-                                                    "4. Xoa nhan vien khoi du an\n5. Thoat\nBan chon:");
+                                                    "4. Xoa nhan vien khoi du an\n5. Thoat\nBan chon: ");
                                             choice2_5 = sc.nextByte();
                                             sc.nextLine();
                                             switch (choice2_5) {
@@ -273,10 +273,9 @@ public class Main {
                                                         projects.getListProjects().get(posProject).setStartDate(df.parse(sc.nextLine()));
                                                         System.out.printf("- Nhap ngay ket thuc moi (%s): ", Project.F.toPattern());
                                                         projects.getListProjects().get(posProject).setEndDate(df.parse(sc.nextLine()));
+                                                        System.out.println("Sua thanh cong!");
                                                     } catch (ParseException ex) {
                                                         System.out.println("Sua KHONG thanh cong!");
-                                                    } finally {
-                                                        System.out.println("Sua thanh cong!");
                                                     }
                                                     break;
                                                 case 3:
