@@ -4,10 +4,6 @@ import java.util.Date;
 public class Manager extends NormalStaff {
     private Date inauguralDay;
 
-    {
-        this.inauguralDay = new Date(0);
-    }
-
     public Manager() {
         super();
     }
@@ -25,6 +21,7 @@ public class Manager extends NormalStaff {
     //Nhập
     @Override
     public void inputStaff() {
+        this.inauguralDay = new Date(0);
         super.inputStaff();
         do {
             try {

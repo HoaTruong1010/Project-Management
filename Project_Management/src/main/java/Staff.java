@@ -1,5 +1,4 @@
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,7 +19,7 @@ public abstract class Staff {
 
     {
         this.id = String.format("%03d", ++count);
-        dateOfBirth = new Date(0);
+        dateOfBirth = new Date();
         projects = new ProjectManagement();
         department = new Department();
     }
@@ -48,6 +47,7 @@ public abstract class Staff {
 
     //Nhập 1 nhân viên
     public void inputStaff() {
+        this.dateOfBirth = new Date(0);
         System.out.print("Nhap ho ten nhan vien: ");
         this.fullName = scanner.nextLine();
         do {
