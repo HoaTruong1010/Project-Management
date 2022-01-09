@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Project {
-    private static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
-    private static final Scanner SC = new Scanner(System.in);
+    public static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
+    public static final Scanner SC = new Scanner(System.in);
     private static int count = 0;
     private String id, name;
     private Date startDate , endDate ;
@@ -36,25 +36,31 @@ public class Project {
         this(null, null, null, 0.0);
     }
 
-    public void inputProject() throws ParseException {
-        this.startDate = new Date();
-        this.endDate = new Date();
-
+    public void inputProject(){
+        this.startDate = new Date(0);
+        this.endDate = new Date(0);
         System.out.print("- Nhap ten du an: ");
         this.name = SC.nextLine();
-
         do {
-            System.out.print("- Nhap ngay bat dau: ");
-            this.startDate = F.parse(SC.nextLine());
-            System.out.print("- Nhap ngay ket thuc: ");
-            this.endDate = F.parse(SC.nextLine()) ;
-            if(this.startDate.after(this.endDate))
+            try {
+                System.out.printf("- Nhap ngay bat dau (%s): ", F.toPattern());
+                this.startDate = F.parse(SC.nextLine());
+                System.out.printf("- Nhap ngay ket thuc (%s): ", F.toPattern());
+                this.endDate = F.parse(SC.nextLine()) ;
+            } catch (ParseException ex ) {
+                System.out.println("Nhap sai! Nhap lai!");
+            }
+            if(this.startDate.after(this.endDate) && this.startDate.getTime() != 0 && this.endDate.getTime() != 0)
                 System.out.println("Nhap sai! Nhap lai!");
         }
-        while (this.startDate.after(this.endDate));
-
-        System.out.print("- Nhap phi dau tu: ");
-        this.investment = SC.nextDouble();
+        while (this.startDate.after(this.endDate) || this.startDate.getTime() == 0 || this.endDate.getTime() == 0);
+        do {
+            System.out.print("- Nhap phi dau tu: ");
+            this.investment = SC.nextDouble();
+            if (this.investment <= 0)
+                System.out.println("Nhap so LON HON 0!");
+        }
+        while (this.investment <= 0);
         SC.nextLine();
     }
 
