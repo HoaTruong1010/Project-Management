@@ -3,6 +3,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
@@ -13,11 +14,11 @@ public class Main {
         List<Staff> staffFind;
         ProjectManagement projects = new ProjectManagement();
         List<Project> projectsFound;
-        Date d;
+        Date d, inDate = null;
         int choice, choice2, choice2_3, choice2_5, choice2_8;
-        int choice1, choice1_6;
+        int choice1, choice1_4, choose, choose1, choice1_6;
         boolean init1 = false, init2 = false;
-        String idProjects, idStaff, inName;
+        String idProjects, idStaff, inName, inTypeStaff = null, inEmail = null;
         int posProject, posStaff = 0, size = 0;
         do {
             System.out.println("\n---- MENU ----");
@@ -32,7 +33,7 @@ public class Main {
                                 "3. Xoa nhan vien\n4. Sua thong tin nhan vien\n" +
                                 "5. Tinh luong nhan vien\n6. Tim kiem nhan vien\n" +
                                 "7. Xem danh sach du an cua nhan vien can xem\n" +
-                                "8. Thoat\nBan chon: ");
+                                "ESC: Nhap phim bat ky de thoat\nBan chon: ");
                         choice1 = sc.nextByte();
                         sc.nextLine();
                         switch (choice1) {
@@ -46,14 +47,22 @@ public class Main {
                                     if (n <= 0) System.out.println("Vui long nhap lai so hop le!");
                                     else {
                                         for (int i = 0; i < n; i++) {
-                                            System.out.print("Nhap loai nhan vien thu " + (i + 1) + " can them.\n" +
-                                                    "(Gom co: NormalStaff, Designer, Programmer, Tester, Manager)\nBan chon: ");
-                                            staffs.add(sc.nextLine());
-                                            if (staffs.getListStaffs().size() > size)
-                                                System.out.println("Da them thanh cong!");
-                                            else
-                                                System.out.println("Them KHONG thanh cong!");
+                                            do {
+                                                System.out.println("Loai nhan vien: 1. Manager\t2. NormalStaff\t3. Designer\t" +
+                                                        "4. Programmer\t5. Tester");
+                                                System.out.print("Chon loai nhan vien thu " + (i + 1) + " can them: ");
+                                                choose = sc.nextInt();
+                                                if (choose < 1 || choose > 5)
+                                                    System.out.println("Vui long nhap dung huong dan!");
+                                            } while (choose < 1 || choose > 5);
+                                            if (choose == 1) inTypeStaff = "Manager";
+                                            if (choose == 2) inTypeStaff = "NormalStaff";
+                                            if (choose == 3) inTypeStaff = "Designer";
+                                            if (choose == 4) inTypeStaff = "Programmer";
+                                            if (choose == 5) inTypeStaff = "Tester";
+                                            staffs.add(inTypeStaff);
                                         }
+                                        System.out.println("Da them thanh cong!");
                                     }
                                 } while (n <= 0);
                                 init1 = true;
@@ -90,7 +99,69 @@ public class Main {
                                     idStaff = sc.nextLine();
                                     posStaff = staffs.findId(idStaff);
                                     if (posStaff >= 0) {
-                                        staffs.edit(staffs.getListStaffs().get(posStaff));
+                                        do {
+                                            System.out.print("\n===CAC THONG TIN CO THE CHINH SUA===\n" +
+                                                    "1. Ho ten\n2. Email\n3. Gioi tinh\n" +
+                                                    "4. Ngay sinh\n5. Phong ban\n6. Ngay nham chuc quan ly\n" +
+                                                    "ESC: Nhap phim bat ky de thoat\n\nBan chon: ");
+                                            choice1_4 = sc.nextInt();
+                                            sc.nextLine();
+                                            switch (choice1_4) {
+                                                case 1:
+                                                    System.out.println("Sua ho ten nhan vien: ");
+                                                    staffs.getListStaffs().get(posStaff).setFullName(sc.nextLine());
+                                                    break;
+                                                case 2:
+                                                    System.out.println("Sua email nhan vien: ");
+                                                    do {
+                                                        System.out.print("Nhap email (vd:abc123@mail.com): ");
+                                                        inEmail = Staff.scanner.nextLine();
+                                                        if (!Pattern.compile(Staff.email_pattern).matcher(inEmail).matches())
+                                                            System.out.println("Nhap sai format email! Vui long nhap lai");
+                                                    } while (!Pattern.compile(Staff.email_pattern).matcher(inEmail).matches());
+                                                    staffs.getListStaffs().get(posStaff).setEmail(inEmail);
+                                                    break;
+                                                case 3:
+                                                    System.out.println("Sua gioi tinh nhan vien: ");
+                                                    do {
+                                                        System.out.print("Gioi tinh: 1. Nu\t2. Nam\t3. Khac\nChon gioi tinh: ");
+                                                        choose1 = sc.nextInt();
+                                                        if (choose1 < 1 || choose1 > 3)
+                                                            System.out.println("Vui long nhap dung huong dan!");
+                                                    } while (choose1 < 1 || choose1 > 3);
+                                                    if (choose1 == 1) staffs.getListStaffs().get(posStaff).setGender("Nu");
+                                                    if (choose1 == 2) staffs.getListStaffs().get(posStaff).setGender("Nam");
+                                                    if (choose1 == 3) staffs.getListStaffs().get(posStaff).setGender("Khac");
+                                                    break;
+                                                case 4:
+                                                    System.out.println("Sua ngay sinh nhan vien: ");
+                                                    do {
+                                                        try {
+                                                            System.out.printf("Nhap ngay sinh theo format (%s): ", df.toPattern());
+                                                            inDate = df.parse(sc.nextLine());
+                                                        } catch (ParseException ex ) {
+                                                            System.out.println("Nhap sai! Nhap lai!");
+                                                        }
+                                                    } while (inDate.getTime() == 0);
+                                                    staffs.getListStaffs().get(posStaff).setDateOfBirth(inDate);
+                                                    break;
+                                                case 5:
+                                                    System.out.println("Sua phong ban nhan vien: ");
+                                                    staffs.getListStaffs().get(posStaff).getDepartment().setName(sc.nextLine());
+                                                    break;
+                                                case 6:
+                                                    System.out.println("Sua ngay nham chuc quan ly: ");
+                                                    if (staffs.getListStaffs().get(posStaff).getClass().getSimpleName().equals("Manager") == true) {
+                                                        //staffs.getListStaffs().get(posStaff).
+                                                        System.out.println("Chua cap nhat case nay!");
+                                                    }
+                                                    else
+                                                        System.out.println("Nhan vien này khong phai quan ly! Khong the sua!\n");
+                                                    break;
+                                                default:
+                                                    System.out.println("Ban chon thoat!\n");
+                                            }
+                                        } while (choice1_4 > 0 && choice1_4 < 7);
                                         System.out.println("Chinh sua thanh cong!");
                                     }
                                     else
@@ -109,7 +180,7 @@ public class Main {
                                         staffs.getListStaffs().get(posStaff).inputFactor();
                                         staffs.getListStaffs().get(posStaff).inputGrant();
                                         payroll = staffs.getListStaffs().get(posStaff).payroll();
-                                        System.out.printf("Luong: %.1f\n", payroll);
+                                        System.out.printf("Luong: %.1f VND\n", payroll);
                                     }
                                     else
                                         System.out.println("Khong tim thay nhan vien!");
@@ -119,31 +190,56 @@ public class Main {
                                 break;
                             case 6:
                                 if (init1) {
-                                    System.out.println("THONG TIN CAN TIM KIEM:");
-                                    System.out.print("1. Tim nhan vien theo ho ten, ngay sinh\n" +
-                                                        "2. Tim nhan vien theo phong ban\nBan chon: ");
+                                    System.out.println("===THONG TIN CAN TIM KIEM===");
+                                    System.out.print("\n1. Tim nhan vien theo ho ten, ngay sinh\n" +
+                                            "2. Tim nhan vien theo phong ban\n" +
+                                            "ESC: Nhap phim bat ky de thoat\n\nBan chon: ");
                                     choice1_6 = sc.nextInt();
                                     sc.nextLine();
                                     switch (choice1_6) {
                                         case 1:
-                                            System.out.print("Nhap ho ten: ");
+                                            System.out.print("Nhap ho ten nhan vien can tim: ");
                                             inName = sc.nextLine();
-                                            System.out.print("Nhap ngay sinh: ");
+                                            System.out.print("Nhap ngay sinh nhan vien can tim: ");
                                             d = df.parse(sc.nextLine());
                                             staffFind = staffs.findNameAndDate(inName, d);
                                             if (staffFind.size() > 0) {
-                                                System.out.println("Danh sach nhan vien:");
-                                                staffFind.forEach(p -> p.showSingle());
+                                                System.out.println("Co " + staffFind.size() + " nhan vien duoc tim thay");
+                                                System.out.println("---Danh sach nhan vien---");
+                                                for (int i = 0; i < staffFind.size(); i++) {
+                                                    for (Staff p: staffFind) {
+                                                        if (i == 0) {
+                                                            System.out.println("=====Nhan vien=====");
+                                                            p.showSingle();
+                                                        }
+                                                        else {
+                                                            System.out.println("=====Nhan vien " + (i + 1) + "=====");
+                                                            p.showSingle();
+                                                        }
+                                                    }
+                                                }
                                             }
                                             else
                                                 System.out.println("Khong tim thay nhan vien!");
                                             break;
                                         case 2:
-                                            System.out.print("Nhap phong ban: ");
+                                            System.out.print("Nhap ten phong ban: ");
                                             staffFind = staffs.findDepartment(sc.nextLine());
                                             if (staffFind.size() > 0) {
-                                                System.out.println("Danh sach nhan vien:");
-                                                staffFind.forEach(p -> p.showSingle());
+                                                System.out.println("Co " + staffFind.size() + " nhan vien duoc tim thay");
+                                                System.out.println("---Danh sach nhan vien---");
+                                                for (int i = 0; i < staffFind.size(); i++) {
+                                                    for (Staff p: staffFind) {
+                                                        if (i == 0) {
+                                                            System.out.println("=====Nhan vien=====");
+                                                            p.showSingle();
+                                                        }
+                                                        else {
+                                                            System.out.println("=====Nhan vien " + (i + 1) + "=====");
+                                                            p.showSingle();
+                                                        }
+                                                    }
+                                                }
                                             }
                                             else
                                                 System.out.println("Khong tim thay nhan vien!");

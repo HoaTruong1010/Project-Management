@@ -20,10 +20,10 @@ public class Tester extends Staff {
     @Override
     public void inputGrant() {
         do {
-            System.out.print("Nhập số lỗi quan trọng phát hiện: ");
+            System.out.print("Nhap so loi quan trong phat hien: ");
             this.error = scanner.nextInt();
             scanner.nextLine();
-            if (this.error < 0) System.out.println("Vui lòng nhập số nguyên dương!");
+            if (this.error < 0) System.out.println("Vui long nhap so nguyen duong!");
         } while (this.error < 0);
     }
 
