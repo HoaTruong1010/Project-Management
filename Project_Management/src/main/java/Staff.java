@@ -8,7 +8,6 @@ public abstract class Staff {
     public  static final String email_pattern = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$";
     public static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
     private String id, fullName, email, gender;
-    private int chooseGender;
     private Date dateOfBirth;
     private static int count = 0;
     protected static final double salary = 6000000;
@@ -29,7 +28,6 @@ public abstract class Staff {
         this.dateOfBirth = p.dateOfBirth;
         this.email = p.email;
         this.gender = p.gender;
-        this.setChooseGender(p.getChooseGender());
     }
 
     public Staff(String name, String mail, String gen, Date date){
@@ -47,6 +45,7 @@ public abstract class Staff {
 
     //Nhập 1 nhân viên
     public void inputStaff() {
+        int chooseGender = 0;
         this.dateOfBirth = new Date(0);
         System.out.print("Nhap ho ten nhan vien: ");
         this.fullName = scanner.nextLine();

@@ -32,7 +32,7 @@ public class Main {
                                 "3. Xoa nhan vien\n4. Sua thong tin nhan vien\n" +
                                 "5. Tinh luong nhan vien\n6. Tim kiem nhan vien\n" +
                                 "7. Xem danh sach du an cua nhan vien can xem\n" +
-                                "ESC: Nhap phim bat ky de thoat\n\nBan chon: ");
+                                "Note: Nhap phim bat ky de thoat\n\nBan chon: ");
                         choice1 = sc.nextByte();
                         sc.nextLine();
                         switch (choice1) {
@@ -45,9 +45,8 @@ public class Main {
                                     if (n <= 0) System.out.println("Vui long nhap lai so hop le!");
                                     else {
                                         for (int i = 0; i < n; i++) {
-                                            do {
-                                                System.out.println("Loai nhan vien: 1. Manager\t2. NormalStaff\t3. Designer\t" +
-                                                        "4. Programmer\t5. Tester");
+                                            do {//sua nhap nv, loai nv dua xuong duoi, sua cách trình bày
+                                                System.out.println("\nLoai nhan vien: 1. Manager\t2. NormalStaff\t3. Designer\t4. Programmer\t5. Tester");
                                                 System.out.print("Chon loai nhan vien thu " + (i + 1) + " can them: ");
                                                 choose = sc.nextInt();
                                                 if (choose < 1 || choose > 5)
@@ -73,7 +72,7 @@ public class Main {
                                 break;
                             case 3:
                                 if (init) {
-                                    System.out.println("Nhap ma nhan vien can xoa: ");
+                                    System.out.print("Nhap ma nhan vien can xoa: ");
                                     idStaff = sc.nextLine();
                                     posStaff = staffs.findId(idStaff);
                                     if (posStaff >= 0) {
@@ -96,7 +95,7 @@ public class Main {
                                             System.out.print("\n===CAC THONG TIN CO THE CHINH SUA===\n" +
                                                     "1. Ho ten\n2. Email\n3. Gioi tinh\n" +
                                                     "4. Ngay sinh\n5. Phong ban\n6. Ngay nham chuc quan ly\n" +
-                                                    "ESC: Nhap phim bat ky de thoat\n\nBan chon: ");
+                                                    "Note: Nhap phim bat ky de thoat\n\nBan chon: ");
                                             choice1_4 = sc.nextInt();
                                             sc.nextLine();
                                             switch (choice1_4) {
@@ -184,9 +183,9 @@ public class Main {
                             case 6:
                                 if (init) {
                                     System.out.println("===THONG TIN CAN TIM KIEM===");
-                                    System.out.print("\n1. Tim nhan vien theo ho ten, ngay sinh\n" +
+                                    System.out.print("1. Tim nhan vien theo ho ten, ngay sinh\n" +
                                                         "2. Tim nhan vien theo phong ban\n" +
-                                                        "ESC: Nhap phim bat ky de thoat\n\nBan chon: ");
+                                                        "Note: Nhap phim bat ky de thoat\n\nBan chon: ");
                                     choice1_6 = sc.nextInt();
                                     sc.nextLine();
                                     switch (choice1_6) {
