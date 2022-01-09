@@ -49,7 +49,7 @@ public class ProjectManagement {
         return false;
     }
 
-    public boolean isLikeStaff(int posProject) {
+    public boolean isLikeManager(int posProject) {
         for (Staff p: this.listProjects.get(posProject).getStaffs().getListStaffs()) {
             if (p.getId().equals(this.listProjects.get(posProject).getManager().getId()))
                 return true;

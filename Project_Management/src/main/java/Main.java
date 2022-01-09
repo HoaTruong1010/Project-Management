@@ -209,7 +209,6 @@ public class Main {
                                         size = projects.getListProjects().get(posProject).getStaffs().getListStaffs().size();
                                         if (size > 0) {
                                             projects.getListProjects().get(posProject).getStaffs().showList();
-                                            projects.getListProjects().get(posProject).getManager().showSingle();
                                             System.out.print("\nXem danh sach du an cua mot nhan vien dang thuc hien?\n" +
                                                     "Neu co bam so 1, nguoc lai bam so 0!\nBan chon: ");
                                             choice2_3 = sc.nextByte();
@@ -390,28 +389,24 @@ public class Main {
                                                     case 2:
                                                         System.out.print("Nhap ma nhan vien: ");
                                                         idStaff = sc.nextLine();
-                                                        if (projects.getListProjects().get(posProject).getStaffs().getListStaffs().size() > 0)
-                                                            posStaff = projects.getListProjects().get(posProject).getStaffs().findId(idStaff);
-                                                        else
-                                                            posStaff = staffs.findId(idStaff);
+                                                        posStaff = staffs.findId(idStaff);
                                                         if (posStaff >= 0) {
-                                                            projects.getListProjects().get(posProject).setManager(staffs.getListStaffs().get(posStaff));
-                                                            if (projects.getListProjects().get(posProject).getManager() != null)
+                                                            if (projects.isLikeManager(posProject)) {
+                                                                projects.getListProjects().get(posProject).setManager(staffs.getListStaffs().get(posStaff));
                                                                 System.out.println("Them thanh cong!");
+                                                            }
                                                             else
-                                                                System.out.println("Them khong thanh cong!");
+                                                                System.out.println("Nhan vien quan ly phai thuoc danh sach nhan vien cua du an!");
                                                         } else
                                                             System.out.println("KHONG tim thay nhan vien!");
                                                         break;
                                                     default:
                                                         if (size < MINSTAFF)
-                                                            System.out.println("So luong nhan vien chua dat toi thieu! Hay them nhan vien!");
+                                                            System.out.println("So luong nhan vien chua dat toi thieu! Hay them nhan vien cho du an!");
                                                         else if (projects.getListProjects().get(posProject).getManager() == null)
-                                                            System.out.println("Du an chua co NHAN VIEN QUAN LY!");
-                                                        else if (!projects.isLikeStaff(posProject))
-                                                            System.out.println("NHAN VIEN QUAN LY phai thuoc danh sach nhan vien cua du an!");
-                                                        else
-                                                            System.out.println("Ban chon thoat!");
+                                                                System.out.println("Du an chua co NHAN VIEN QUAN LY!");
+                                                            else
+                                                                System.out.println("Ban chon thoat!");
                                                 }
                                             }
                                             while (choice2_8 > 0 && choice2_8 < 3 || size < MINSTAFF || projects.getListProjects().get(posProject).getManager() == null);
