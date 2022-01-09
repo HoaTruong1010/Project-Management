@@ -1,11 +1,12 @@
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
 public abstract class Staff {
-    public  static final String email_pattern = "^[a-zA-Z][\\w-]+@([\\\\w]+\\\\.[\\\\w]+|[\\\\w]+\\\\.[\\\\w]{2,}\\\\.[\\\\w]{2,})$";
+    public  static final String email_pattern = "^[A-Za-z0-9]+[A-Za-z0-9]*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)$";
     public static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
     private String id, fullName, email, gender;
     private int chooseGender;
@@ -19,7 +20,7 @@ public abstract class Staff {
 
     {
         this.id = String.format("%03d", ++count);
-        dateOfBirth = new Date();
+        dateOfBirth = new Date(0);
         projects = new ProjectManagement();
         department = new Department();
     }
@@ -43,29 +44,36 @@ public abstract class Staff {
         this(null, null,null,null);
     }
 
-
+    //k
 
     //Nhập 1 nhân viên
-    public void inputStaff() throws ParseException {
+    public void inputStaff() {
         System.out.print("Nhap ho ten nhan vien: ");
         this.fullName = scanner.nextLine();
         do {
             System.out.print("Nhap email (vd:abc123@mail.com): ");
             this.email = scanner.nextLine();
-            if (!Pattern.matches(email_pattern, this.email))
-                System.out.println("Nhap sai format email! Vui long nhap lai\n");
-        } while (!Pattern.matches(email_pattern, this.email));
+            if (!Pattern.compile(email_pattern).matcher(this.email).matches())
+                System.out.println("Nhap sai format email! Vui long nhap lai");
+        } while (!Pattern.compile(email_pattern).matcher(this.email).matches());
         do {
-            System.out.print("Chon gioi tinh:\n1. Nu\t2. Nam\t3. Khac");
+            System.out.print("Gioi tinh: 1. Nu\t2. Nam\t3. Khac\nChon gioi tinh: ");
             this.setChooseGender(scanner.nextInt());
-            if (this.getChooseGender() > 0 && this.getChooseGender() < 4)
-                System.out.println("Vui long nhap dung huong dan!\n");
-        } while (this.getChooseGender() > 0 && this.getChooseGender() < 4);
+            if (this.getChooseGender() < 1 || this.getChooseGender() > 3)
+                System.out.println("Vui long nhap dung huong dan!");
+        } while (this.getChooseGender() < 1 || this.getChooseGender() > 3);
         if (this.getChooseGender() == 1) this.gender = "Nu";
         if (this.getChooseGender() == 2) this.gender = "Nam";
         if (this.getChooseGender() == 3) this.gender = "Khac";
-        System.out.print("Nhap ngay sinh theo format dd/mm/yyyy: ");
-        this.dateOfBirth = F.parse(scanner.nextLine());
+        scanner.nextLine();
+        do {
+            try {
+                System.out.printf("Nhap ngay sinh theo format (%s): ", F.toPattern());
+                this.dateOfBirth = F.parse(scanner.nextLine());
+            } catch (ParseException ex ) {
+                System.out.println("Nhap sai! Nhap lai!");
+            }
+        } while (this.dateOfBirth.getTime() == 0);
         System.out.print("Nhap phong ban truc thuoc: ");
         this.department.setName(scanner.nextLine());
     }

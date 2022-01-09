@@ -14,9 +14,9 @@ public class Main {
         List<Project> projectsFound;
         Date d;
         int choice, choice2, choice2_3, choice2_5, choice2_8;
-        int choice1, choice1_4, choice1_6;
+        int choice1, choice1_4, choose, choice1_6;
         boolean init = false;
-        String idProjects, idStaff, inName;
+        String idProjects, idStaff, inName, inTypeStaff = null;
         int posProject, posStaff, size = 0;
         do {
             System.out.println("---- MENU ----");
@@ -31,7 +31,7 @@ public class Main {
                                 "3. Xoa nhan vien\n4. Sua thong tin nhan vien\n" +
                                 "5. Tinh luong nhan vien\n6. Tim kiem nhan vien\n" +
                                 "7. Xem danh sach du an cua nhan vien can xem\n" +
-                                "ESC: Nhap phim bat ky de thoat\nBan chon: ");
+                                "ESC: Nhap phim bat ky de thoat\n\nBan chon: ");
                         choice1 = sc.nextByte();
                         sc.nextLine();
                         switch (choice1) {
@@ -44,10 +44,20 @@ public class Main {
                                     if (n <= 0) System.out.println("Vui long nhap lai so hop le!");
                                     else {
                                         for (int i = 0; i < n; i++) {
-                                            System.out.println("Loai nhan vien: Manager, NormalStaff, Designer, Programmer, Tester" +
-                                                            "\nLuu y: nhap dung ten loai nhan vien!");
-                                            System.out.print("\nNhap loai nhan vien thu " + (i + 1) + " can them: ");
-                                            staffs.add(sc.nextLine());
+                                            do {
+                                                System.out.println("Loai nhan vien:\n1. Manager\t2. NormalStaff\t3. Designer\t" +
+                                                        "4. Programmer\t5. Tester");
+                                                System.out.print("Chon loai nhan vien thu " + (i + 1) + " can them: ");
+                                                choose = sc.nextInt();
+                                                if (choose < 1 || choose > 5)
+                                                    System.out.println("Vui long nhap dung huong dan!");
+                                            } while (choose < 1 || choose > 5);
+                                            if (choose == 1) inTypeStaff = "Manager";
+                                            if (choose == 2) inTypeStaff = "NormalStaff";
+                                            if (choose == 3) inTypeStaff = "Designer";
+                                            if (choose == 4) inTypeStaff = "Programmer";
+                                            if (choose == 5) inTypeStaff = "Tester";
+                                            staffs.add(inTypeStaff);
                                         }
                                         System.out.println("Da them thanh cong!");
                                     }
@@ -85,7 +95,7 @@ public class Main {
                                             System.out.println("CAC THONG TIN CO THE CHINH SUA\n" +
                                                     "1. Ho ten\n2. Email\n3. Gioi tinh\n" +
                                                     "4. Ngay sinh\n5. Phong ban\n6. Ngay nham chuc quan ly" +
-                                                    "ESC: Nhap phim bat ky de thoat\nBan chon: ");
+                                                    "ESC: Nhap phim bat ky de thoat\n\nBan chon: ");
                                             choice1_4 = sc.nextInt();
                                             sc.nextLine();
                                             switch (choice1_4) {
@@ -153,7 +163,7 @@ public class Main {
                                     System.out.println("THONG TIN CAN TIM KIEM:");
                                     System.out.println("1. Tim nhan vien theo ho ten, ngay sinh\n" +
                                                         "2. Tim nhan vien theo phong ban\n" +
-                                                        "ESC: Nhap phim bat ky de thoat\nBan chon: ");
+                                                        "ESC: Nhap phim bat ky de thoat\n\nBan chon: ");
                                     choice1_6 = sc.nextInt();
                                     sc.nextLine();
                                     switch (choice1_6) {

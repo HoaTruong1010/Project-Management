@@ -4,6 +4,10 @@ import java.util.Date;
 public class Manager extends NormalStaff {
     private Date inauguralDay;
 
+    {
+        this.inauguralDay = new Date(0);
+    }
+
     public Manager() {
         super();
     }
@@ -20,10 +24,16 @@ public class Manager extends NormalStaff {
 
     //Nhập
     @Override
-    public void inputStaff() throws ParseException {
+    public void inputStaff() {
         super.inputStaff();
-        System.out.print("Nhap ngay nham chuc: ");
-        this.inauguralDay = F.parse(scanner.nextLine());
+        do {
+            try {
+                System.out.printf("Nhap ngay nham chuc theo format (%s): ", F.toPattern());
+                this.inauguralDay = F.parse(scanner.nextLine());
+            } catch (ParseException ex ) {
+                System.out.println("Nhap sai! Nhap lai!");
+            }
+        } while (this.inauguralDay.getTime() == 0);
     }
 
     //Hiển thị

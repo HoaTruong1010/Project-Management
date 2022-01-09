@@ -18,10 +18,12 @@ public class StaffManagement {
             Staff p = (Staff) c.getDeclaredConstructor(null).newInstance();
             p.inputStaff();
             this.listStaffs.add(p);
-        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException | ParseException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
             e.printStackTrace();
         }
     }
+
+    //Sửa
 
     //Xoá nhân viên
     public void delete(Staff p) {
@@ -50,10 +52,8 @@ public class StaffManagement {
     public void showList() {
         System.out.println("----DANH SACH NHAN VIEN----");
         for (int i = 0; i < this.listStaffs.size(); i++) {
-            for (Staff p: listStaffs) {
-                System.out.println("=====Nhan vien " + (i+1) + "=====");
-                p.showSingle();
-            }
+            System.out.println("=====Nhan vien " + (i+1) + "=====");
+            this.listStaffs.get(i).showSingle();
         }
     }
 
