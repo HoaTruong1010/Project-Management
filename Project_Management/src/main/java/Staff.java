@@ -57,13 +57,13 @@ public abstract class Staff {
         } while (!Pattern.compile(email_pattern).matcher(this.email).matches());
         do {
             System.out.print("Gioi tinh: 1. Nu\t2. Nam\t3. Khac\nChon gioi tinh: ");
-            this.setChooseGender(scanner.nextInt());
-            if (this.getChooseGender() < 1 || this.getChooseGender() > 3)
+            chooseGender = scanner.nextInt();
+            if (chooseGender < 1 || chooseGender > 3)
                 System.out.println("Vui long nhap dung huong dan!");
-        } while (this.getChooseGender() < 1 || this.getChooseGender() > 3);
-        if (this.getChooseGender() == 1) this.gender = "Nu";
-        if (this.getChooseGender() == 2) this.gender = "Nam";
-        if (this.getChooseGender() == 3) this.gender = "Khac";
+        } while (chooseGender < 1 || chooseGender > 3);
+        if (chooseGender == 1) this.gender = "Nu";
+        if (chooseGender == 2) this.gender = "Nam";
+        if (chooseGender == 3) this.gender = "Khac";
         scanner.nextLine();
         do {
             try {
@@ -175,13 +175,5 @@ public abstract class Staff {
 
     public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public int getChooseGender() {
-        return chooseGender;
-    }
-
-    public void setChooseGender(int chooseGender) {
-        this.chooseGender = chooseGender;
     }
 }
