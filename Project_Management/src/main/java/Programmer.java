@@ -22,10 +22,10 @@ public class Programmer extends Staff {
     @Override
     public void inputGrant() {
         do {
-            System.out.print("Nhập số giờ làm thêm: ");
+            System.out.print("Nhap so gio lam them: ");
             this.OT = scanner.nextInt();
             scanner.nextLine();
-            if (this.OT < 0) System.out.println("Vui lòng nhập số nguyên dương!");
+            if (this.OT < 0) System.out.println("Vui long nhap so nguyen duong!");
         } while (this.OT < 0);
     }
 

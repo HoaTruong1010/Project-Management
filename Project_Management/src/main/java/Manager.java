@@ -22,7 +22,7 @@ public class Manager extends NormalStaff {
     @Override
     public void inputStaff() throws ParseException {
         super.inputStaff();
-        System.out.print("Nhập ngày nhậm chức: ");
+        System.out.print("Nhap ngay nham chuc: ");
         this.inauguralDay = F.parse(scanner.nextLine());
     }
 
@@ -30,7 +30,7 @@ public class Manager extends NormalStaff {
     @Override
     public void showSingle() {
         super.showSingle();
-        System.out.printf("- Ngày nhậm chức: %s\n", F.format(this.inauguralDay));
+        System.out.printf("- Ngay nham chuc: %s\n", F.format(this.inauguralDay));
     }
 
     public Date getInauguralDay() {

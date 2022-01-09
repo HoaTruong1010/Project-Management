@@ -23,38 +23,6 @@ public class StaffManagement {
         }
     }
 
-    //Edit nhân viên
-    public void edit(Staff p) throws ParseException {
-        System.out.println("CAC THONG TIN CO THE CHINH SUA\n" +
-                "1. Ho ten\n2. Email\n3. Gioi tinh\n" +
-                "4. Ngay sinh\n5. Phong ban\n6. Thoat\nBan chon: ");
-        int temp = Integer.parseInt(Staff.scanner.nextLine());
-        switch (temp) {
-            case 1:
-                System.out.println("Sua ho ten nhan vien: ");
-                p.setFullName(Staff.scanner.nextLine());
-                break;
-            case 2:
-                System.out.println("Sua email nhan vien: ");
-                p.setEmail(Staff.scanner.nextLine());
-                break;
-            case 3:
-                System.out.println("Sua gioi tinh nhan vien: ");
-                p.setGender(Staff.scanner.nextLine());
-                break;
-            case 4:
-                System.out.println("Sua ngay sinh nhan vien: ");
-                p.setDateOfBirth(Staff.F.parse(Staff.scanner.nextLine()));
-                break;
-            case 5:
-                System.out.println("Sua phong ban nhan vien: ");
-                p.getDepartment().setName(Staff.scanner.nextLine());
-                break;
-            default:
-                System.out.println("Ban nhap sai lua chon!\n");
-        }
-    }
-
     //Xoá nhân viên
     public void delete(Staff p) {
         this.listStaffs.remove(p);
@@ -81,7 +49,12 @@ public class StaffManagement {
 
     public void showList() {
         System.out.println("----DANH SACH NHAN VIEN----");
-        this.listStaffs.forEach(p -> p.showSingle());
+        for (int i = 0; i < this.listStaffs.size(); i++) {
+            for (Staff p: listStaffs) {
+                System.out.println("=====Nhan vien " + (i+1) + "=====");
+                p.showSingle();
+            }
+        }
     }
 
     public List<Staff> getListStaffs() {
