@@ -55,9 +55,9 @@ public abstract class Staff {
 
     //Hiển thị 1 nhân viên
     public void showSingle() {
-        System.out.printf("- Mã nhân viên: %s\n- Họ tên: %s\n- Email: %s\n" +
+        System.out.printf("\n- Mã nhân viên: %s\n- Họ tên: %s\n- Email: %s\n" +
                 "- Giới tính: %s\n- Ngày sinh: %s\n" +
-                "- Phòng ban: %s\n\n", this.id, this.fullName, this.email, this.gender,
+                "- Phòng ban: %s\n", this.id, this.fullName, this.email, this.gender,
                 F.format(this.dateOfBirth), this.department.getName());
     }
 
