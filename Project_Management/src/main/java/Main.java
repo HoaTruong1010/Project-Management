@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
+        final int MINSTAFF = 5;
         Scanner sc = new Scanner(System.in);
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         StaffManagement staffs = new StaffManagement();
@@ -17,7 +18,7 @@ public class Main {
         int choice1, choice1_6;
         boolean init1 = false, init2 = false;
         String idProjects, idStaff, inName;
-        int posProject, posStaff, size = 0;
+        int posProject, posStaff = 0, size = 0;
         do {
             System.out.println("\n---- MENU ----");
             System.out.print("1. Quan ly nhan vien\n2. Quan ly du an\n3. Thoat\nBan chon: ");
@@ -46,7 +47,7 @@ public class Main {
                                     else {
                                         for (int i = 0; i < n; i++) {
                                             System.out.print("Nhap loai nhan vien thu " + (i + 1) + " can them.\n" +
-                                                    "(Goi y: NormalStaff, Designer, Programmer, Tester, Manager)\nBan chon: ");
+                                                    "(Gom co: NormalStaff, Designer, Programmer, Tester, Manager)\nBan chon: ");
                                             staffs.add(sc.nextLine());
                                             if (staffs.getListStaffs().size() > size)
                                                 System.out.println("Da them thanh cong!");
@@ -69,6 +70,9 @@ public class Main {
                                     idStaff = sc.nextLine();
                                     posStaff = staffs.findId(idStaff);
                                     if (posStaff >= 0) {
+                                        for (Project p : projects.getListProjects()) {
+                                            p.getStaffs().delete(p.getStaffs().getListStaffs().get(p.getStaffs().findId(idStaff)));
+                                        }
                                         staffs.delete(staffs.getListStaffs().get(posStaff));
                                         System.out.println("Da xoa nhan vien thanh cong!");
                                         if (projects.getListProjects().size() == 0)
@@ -205,7 +209,8 @@ public class Main {
                                         size = projects.getListProjects().get(posProject).getStaffs().getListStaffs().size();
                                         if (size > 0) {
                                             projects.getListProjects().get(posProject).getStaffs().showList();
-                                            System.out.print("Xem danh sach du an cua mot nhan vien dang thuc hien?\n" +
+                                            projects.getListProjects().get(posProject).getManager().showSingle();
+                                            System.out.print("\nXem danh sach du an cua mot nhan vien dang thuc hien?\n" +
                                                     "Neu co bam so 1, nguoc lai bam so 0!\nBan chon: ");
                                             choice2_3 = sc.nextByte();
                                             sc.nextLine();
@@ -215,9 +220,13 @@ public class Main {
                                                 posStaff = projects.getListProjects().get(posProject).getStaffs().findId(idStaff);
                                                 if(posStaff >= 0)
                                                     staffs.getListStaffs().get(posStaff).getProjects().showList();
-                                                else
-                                                    System.out.println("KHONG tim thay nhan vien!");
-                                                System.out.print("Ban co muon tiep tuc?\n" + "Neu co bam so 1, nguoc lai bam so 0!\nBan chon: ");
+                                                else if(projects.getListProjects().get(posProject).getManager().getId() == idStaff) {
+                                                    posStaff = staffs.findId(idStaff);
+                                                    staffs.getListStaffs().get(posStaff).getProjects().showList();
+                                                }
+                                                    else
+                                                        System.out.println("KHONG tim thay nhan vien!");
+                                                System.out.print("\nBan co muon tiep tuc?\n" + "Neu co bam so 1, nguoc lai bam so 0!\nBan chon: ");
                                                 choice2_3 = sc.nextByte();
                                                 sc.nextLine();
                                             };
@@ -239,6 +248,9 @@ public class Main {
                                     posProject = projects.findId(idProjects);
                                     System.out.println("---- KET QUA ----");
                                     if (posProject >= 0) {
+                                        for (Staff s : staffs.getListStaffs()) {
+                                            s.getProjects().delete(s.getProjects().getListProjects().get(s.getProjects().findId(idProjects)));
+                                        }
                                         projects.delete(projects.getListProjects().get(posProject));
                                         System.out.println("Xoa thanh cong!");
                                         if (projects.getListProjects().size() == 0)
@@ -257,7 +269,7 @@ public class Main {
                                     posProject = projects.findId(idProjects);
                                     if(posProject >= 0) {
                                         do {
-                                            System.out.print("Chon muc can sua:\n1. Sua ten du an\n2. Sua ngay\n3. Sua phi dau tu\n" +
+                                            System.out.print("\nChon muc can sua:\n1. Sua ten du an\n2. Sua ngay\n3. Sua phi dau tu\n" +
                                                     "4. Xoa nhan vien khoi du an\n5. Thoat\nBan chon: ");
                                             choice2_5 = sc.nextByte();
                                             sc.nextLine();
@@ -297,6 +309,8 @@ public class Main {
                                                         if (posStaff >= 0) {
                                                             projects.getListProjects().get(posProject).getStaffs().delete(
                                                                     projects.getListProjects().get(posProject).getStaffs().getListStaffs().get(posProject));
+                                                            staffs.getListStaffs().get(posStaff).getProjects().delete(
+                                                                    staffs.getListStaffs().get(posStaff).getProjects().getListProjects().get(posProject));
                                                             System.out.println("Xoa thanh cong!");
                                                         } else
                                                             System.out.println("KHONG tim thay nhan vien!");
@@ -341,58 +355,71 @@ public class Main {
                                 break;
                             case 8:
                                 if (init2) {
-                                    System.out.print("Nhap ma du an: ");
-                                    idProjects = sc.nextLine();
-                                    posProject = projects.findId(idProjects);
-                                    if(posProject >= 0) {
-                                        do {
-                                            System.out.print("1. Gan nhan vien\n2. Gan nguoi quan ly\n3. Thoat\nBan chon: ");
-                                            choice2_8 = sc.nextByte();
-                                            sc.nextLine();
-                                            switch (choice2_8) {
-                                                case 1:
-                                                    size = projects.getListProjects().get(posProject).getStaffs().getListStaffs().size();
-                                                    if(size < 10) {
+                                    if (staffs.getListStaffs().size() > MINSTAFF) {
+                                        System.out.print("Nhap ma du an: ");
+                                        idProjects = sc.nextLine();
+                                        posProject = projects.findId(idProjects);
+                                        if (posProject >= 0) {
+                                            do {
+                                                System.out.print("\n1. Gan nhan vien\n2. Gan nguoi quan ly\n3. Thoat\nBan chon: ");
+                                                choice2_8 = sc.nextByte();
+                                                sc.nextLine();
+                                                switch (choice2_8) {
+                                                    case 1:
+                                                        size = projects.getListProjects().get(posProject).getStaffs().getListStaffs().size();
+                                                        if (size < 10) {
+                                                            System.out.print("Nhap ma nhan vien: ");
+                                                            idStaff = sc.nextLine();
+                                                            posStaff = staffs.findId(idStaff);
+                                                            if (posStaff >= 0) {
+                                                                if (staffs.getListStaffs().get(posStaff).getProjects().getListProjects().size() < 3
+                                                                        && !projects.isLike(posProject, idStaff)) {
+                                                                    projects.getListProjects().get(posProject).getStaffs().add(staffs.getListStaffs().get(posStaff));
+                                                                    staffs.getListStaffs().get(posStaff).getProjects().getListProjects().add(projects
+                                                                            .getListProjects().get(posProject));
+                                                                    size += 1;
+                                                                    System.out.println("Them thanh cong!");
+                                                                } else {
+                                                                    System.out.println("Them KHONG thanh cong!");
+                                                                }
+                                                            } else
+                                                                System.out.println("KHONG tim thay nhan vien!");
+                                                        } else
+                                                            System.out.println("So luong nhan vien da dat toi da");
+                                                        break;
+                                                    case 2:
                                                         System.out.print("Nhap ma nhan vien: ");
                                                         idStaff = sc.nextLine();
-                                                        posStaff = staffs.findId(idStaff);
-                                                        if(posStaff >= 0) {
-                                                            if (staffs.getListStaffs().get(posStaff).getProjects().getListProjects().size() < 3) {
-                                                                projects.getListProjects().get(posProject).getStaffs().add(staffs.getListStaffs().get(posStaff));
-                                                                staffs.getListStaffs().get(posStaff).getProjects().getListProjects().add(projects
-                                                                        .getListProjects().get(posProject));
+                                                        if (projects.getListProjects().get(posProject).getStaffs().getListStaffs().size() > 0)
+                                                            posStaff = projects.getListProjects().get(posProject).getStaffs().findId(idStaff);
+                                                        else
+                                                            posStaff = staffs.findId(idStaff);
+                                                        if (posStaff >= 0) {
+                                                            projects.getListProjects().get(posProject).setManager(staffs.getListStaffs().get(posStaff));
+                                                            if (projects.getListProjects().get(posProject).getManager() != null)
                                                                 System.out.println("Them thanh cong!");
-                                                            } else {
-                                                                System.out.println("Nhan vien da lam toi da 3 du an!");
-                                                            }
+                                                            else
+                                                                System.out.println("Them khong thanh cong!");
                                                         } else
                                                             System.out.println("KHONG tim thay nhan vien!");
-                                                    } else
-                                                        System.out.println("So luong nhan vien da dat toi da");
-                                                    break;
-                                                case 2:
-                                                    System.out.print("Nhap ma nhan vien: ");
-                                                    idStaff = sc.nextLine();
-                                                    posStaff = staffs.findId(idStaff);
-                                                    if(posStaff >= 0) {
-                                                        projects.getListProjects().get(posProject).setManager(staffs.getListStaffs().get(posStaff));
-                                                        if(projects.getListProjects().get(posProject).getManager() != null)
-                                                            System.out.println("Them thanh cong!");
+                                                        break;
+                                                    default:
+                                                        if (size < MINSTAFF)
+                                                            System.out.println("So luong nhan vien chua dat toi thieu! Hay them nhan vien!");
+                                                        else if (projects.getListProjects().get(posProject).getManager() == null)
+                                                            System.out.println("Du an chua co NHAN VIEN QUAN LY!");
+                                                        else if (!projects.isLikeStaff(posProject))
+                                                            System.out.println("NHAN VIEN QUAN LY phai thuoc danh sach nhan vien cua du an!");
                                                         else
-                                                            System.out.println("Them khong thanh cong!");
-                                                    } else
-                                                        System.out.println("KHONG tim thay nhan vien!");
-                                                    break;
-                                                default:
-                                                    if (size < 4)
-                                                        System.out.println("So luong nhan vien chua dat toi thieu! Hay them nhan vien!");
-                                                    else
-                                                        System.out.println("Ban chon thoat!");
+                                                            System.out.println("Ban chon thoat!");
+                                                }
                                             }
-                                        } while (choice2_8 > 0 && choice2_8 < 3 || size < 4);
+                                            while (choice2_8 > 0 && choice2_8 < 3 || size < MINSTAFF || projects.getListProjects().get(posProject).getManager() == null);
+                                        } else
+                                            System.out.println("KHONG tim thay du an");
                                     }
                                     else
-                                        System.out.println("KHONG tim thay du an");
+                                        System.out.println("So luong nhan vien chua du de gan cho du an! Hay them nhan vien!");
                                 }
                                 else
                                     System.out.println("Chua co du an nao!");

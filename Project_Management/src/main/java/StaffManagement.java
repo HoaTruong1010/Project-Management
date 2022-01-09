@@ -14,12 +14,13 @@ public class StaffManagement {
 
     public void add(String typeOfStaff){
         try {
+            typeOfStaff = typeOfStaff.replaceAll(" ", "");
             Class c = Class.forName(typeOfStaff);
             Staff p = (Staff) c.getDeclaredConstructor(null).newInstance();
             p.inputStaff();
             this.listStaffs.add(p);
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException | ParseException e) {
-            e.printStackTrace();
+            System.out.println("Vui long nhap dung loai nhan vien!");
         }
     }
 
