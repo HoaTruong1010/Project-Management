@@ -1,4 +1,3 @@
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -14,16 +13,15 @@ public class StaffManagement {
 
     public void add(String typeOfStaff){
         try {
+            typeOfStaff = typeOfStaff.replaceAll(" ", "");
             Class c = Class.forName(typeOfStaff);
             Staff p = (Staff) c.getDeclaredConstructor(null).newInstance();
             p.inputStaff();
             this.listStaffs.add(p);
         } catch (ClassNotFoundException | NoSuchMethodException | InstantiationException | IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            System.out.println("Vui long nhap dung loai nhan vien!");
         }
     }
-
-    //Sửa
 
     //Xoá nhân viên
     public void delete(Staff p) {
@@ -55,6 +53,12 @@ public class StaffManagement {
             System.out.println("=====Nhan vien " + (i+1) + "=====");
             this.listStaffs.get(i).showSingle();
         }
+    }
+
+    public boolean isManager(int posStaff) {
+        if (this.listStaffs.get(posStaff) instanceof Manager)
+            return true;
+        return false;
     }
 
     public List<Staff> getListStaffs() {

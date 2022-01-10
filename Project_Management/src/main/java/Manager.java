@@ -20,7 +20,7 @@ public class Manager extends NormalStaff {
 
     //Nhập
     @Override
-    public void inputStaff() {
+    public void inputStaff(){
         this.inauguralDay = new Date(0);
         super.inputStaff();
         do {

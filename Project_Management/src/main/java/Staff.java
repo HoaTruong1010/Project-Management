@@ -9,6 +9,7 @@ public abstract class Staff {
     public static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
     private String id, fullName, email, gender;
     private Date dateOfBirth;
+    private int chooseGender;
     private static int count = 0;
     protected static final double salary = 6000000;
     private double factor = 0.0;
@@ -18,7 +19,6 @@ public abstract class Staff {
 
     {
         this.id = String.format("%03d", ++count);
-        dateOfBirth = new Date();
         projects = new ProjectManagement();
         department = new Department();
     }
@@ -41,11 +41,9 @@ public abstract class Staff {
         this(null, null,null,null);
     }
 
-    //k
-
     //Nhập 1 nhân viên
-    public void inputStaff() {
-        int chooseGender = 0;
+    public void inputStaff(){
+        boolean checkException;
         this.dateOfBirth = new Date(0);
         System.out.print("Nhap ho ten nhan vien: ");
         this.fullName = scanner.nextLine();
@@ -56,15 +54,20 @@ public abstract class Staff {
                 System.out.println("Nhap sai format email! Vui long nhap lai");
         } while (!Pattern.compile(email_pattern).matcher(this.email).matches());
         do {
-            System.out.print("Gioi tinh: 1. Nu\t2. Nam\t3. Khac\nChon gioi tinh: ");
-            chooseGender = scanner.nextInt();
-            if (chooseGender < 1 || chooseGender > 3)
+            try {
+                System.out.print("Gioi tinh: 1. Nu\t2. Nam\t3. Khac\nChon gioi tinh: ");
+                this.setChooseGender(Integer.parseInt(scanner.nextLine()));
+                checkException = true;
+                if (this.getChooseGender() < 1 || this.getChooseGender() > 3)
+                    System.out.println("Vui long nhap dung huong dan!");
+            } catch (NumberFormatException exception) {
+                checkException = false;
                 System.out.println("Vui long nhap dung huong dan!");
-        } while (chooseGender < 1 || chooseGender > 3);
-        if (chooseGender == 1) this.gender = "Nu";
-        if (chooseGender == 2) this.gender = "Nam";
-        if (chooseGender == 3) this.gender = "Khac";
-        scanner.nextLine();
+            }
+        } while (this.getChooseGender() < 1 || this.getChooseGender() > 3 || !checkException);
+        if (this.getChooseGender() == 1) this.gender = "Nu";
+        if (this.getChooseGender() == 2) this.gender = "Nam";
+        if (this.getChooseGender() == 3) this.gender = "Khac";
         do {
             try {
                 System.out.printf("Nhap ngay sinh theo format (%s): ", F.toPattern());
@@ -91,7 +94,7 @@ public abstract class Staff {
             System.out.print("Nhap he so luong cua nhan vien: ");
             this.factor = scanner.nextDouble();
             scanner.nextLine();
-            if (this.factor <= 0) System.out.println("Nhap sai! Nhap lại!");
+            if (this.factor <= 0) System.out.println("Nhap sai! Nhap lai!");
         } while (this.factor <= 0);
     }
 
@@ -175,5 +178,13 @@ public abstract class Staff {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public int getChooseGender() {
+        return chooseGender;
+    }
+
+    public void setChooseGender(int chooseGender) {
+        this.chooseGender = chooseGender;
     }
 }

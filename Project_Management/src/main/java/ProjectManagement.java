@@ -1,4 +1,3 @@
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +12,7 @@ public class ProjectManagement {
         this.listProjects.add(x);
     }
 
-    public void add() throws ParseException {
+    public void add(){
         Project x = new Project();
         System.out.println("Nhap du an so: " + x.getId());
         x.inputProject();
@@ -30,7 +29,8 @@ public class ProjectManagement {
     }
 
     public List<Project> findNameAndStart (String name, Date start) {
-        return this.listProjects.stream().filter(x -> x.getName().equalsIgnoreCase(name) && x.getStartDate().equals(start)).collect(Collectors.toList());
+        return this.listProjects.stream().filter(x -> x.getName().equalsIgnoreCase(name) && x.getStartDate()
+                .equals(start)).collect(Collectors.toList());
     }
 
     public int findId( String id ) {
@@ -39,6 +39,22 @@ public class ProjectManagement {
                 return i;
         }
         return -1;
+    }
+
+    public boolean isLike(int posProject, String idStaff) {
+        for (Staff p: this.listProjects.get(posProject).getStaffs().getListStaffs()) {
+            if (p.getId().equals(idStaff))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean isLikeManager(int posProject) {
+        for (Staff p: this.listProjects.get(posProject).getStaffs().getListStaffs()) {
+            if (p.getId().equals(this.listProjects.get(posProject).getManager().getId()))
+                return true;
+        }
+        return false;
     }
 
     public void sortInvestment() {
