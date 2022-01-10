@@ -56,6 +56,12 @@ public class StaffManagement {
         }
     }
 
+    public boolean isManager(int posStaff) {
+        if (this.listStaffs.get(posStaff) instanceof Manager)
+            return true;
+        return false;
+    }
+
     public List<Staff> getListStaffs() {
         return listStaffs;
     }
