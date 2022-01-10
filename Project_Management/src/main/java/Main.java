@@ -540,7 +540,7 @@ public class Main {
                                                                     idStaff = sc.nextLine();
                                                                     posStaff = staffs.findId(idStaff);
                                                                     if (posStaff >= 0) {
-                                                                        if (projects.isLikeManager(posProject)) {
+                                                                        if (projects.isLike(posProject, idStaff)) {
                                                                             projects.getListProjects().get(posProject).setManager(staffs.getListStaffs().get(posStaff));
                                                                             System.out.println("Them thanh cong!");
                                                                         }
