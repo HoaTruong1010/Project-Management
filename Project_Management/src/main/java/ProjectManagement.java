@@ -13,7 +13,7 @@ public class ProjectManagement {
         this.listProjects.add(x);
     }
 
-    public void add() throws ParseException {
+    public void add(){
         Project x = new Project();
         System.out.println("Nhap du an so: " + x.getId());
         x.inputProject();

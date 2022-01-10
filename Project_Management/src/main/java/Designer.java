@@ -23,10 +23,10 @@ public class Designer extends Staff {
     @Override
     public void inputGrant() {
         do {
-            System.out.print("Nhập số lượng project tham gia: ");
+            System.out.print("Nhap so luong project tham gia: ");
             this.numProject = scanner.nextInt();
             scanner.nextLine();
-            if (this.numProject <= 0 || this.numProject > MAXPROJECT) System.out.println("Nhập sai! Nhập lại!");
+            if (this.numProject <= 0 || this.numProject > MAXPROJECT) System.out.println("Nhap sai! Nhap lai!");
         } while (this.numProject <= 0 || this.numProject > MAXPROJECT);
     }
 
