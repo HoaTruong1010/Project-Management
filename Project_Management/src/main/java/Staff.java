@@ -1,5 +1,3 @@
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.regex.Pattern;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,7 +19,6 @@ public abstract class Staff {
 
     {
         this.id = String.format("%03d", ++count);
-        dateOfBirth = new Date();
         projects = new ProjectManagement();
         department = new Department();
     }

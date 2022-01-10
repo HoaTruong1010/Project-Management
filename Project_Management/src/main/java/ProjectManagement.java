@@ -1,4 +1,3 @@
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,7 +29,8 @@ public class ProjectManagement {
     }
 
     public List<Project> findNameAndStart (String name, Date start) {
-        return this.listProjects.stream().filter(x -> x.getName().equalsIgnoreCase(name) && x.getStartDate().equals(start)).collect(Collectors.toList());
+        return this.listProjects.stream().filter(x -> x.getName().equalsIgnoreCase(name) && x.getStartDate()
+                .equals(start)).collect(Collectors.toList());
     }
 
     public int findId( String id ) {
