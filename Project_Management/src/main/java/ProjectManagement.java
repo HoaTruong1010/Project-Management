@@ -49,14 +49,6 @@ public class ProjectManagement {
         return false;
     }
 
-    public boolean isLikeManager(int posProject) {
-        for (Staff p: this.listProjects.get(posProject).getStaffs().getListStaffs()) {
-            if (p.getId().equals(this.listProjects.get(posProject).getManager().getId()))
-                return true;
-        }
-        return false;
-    }
-
     public void sortInvestment() {
         this.listProjects.sort((x1, x2) -> {return x1.compareTo(x2);});
     }

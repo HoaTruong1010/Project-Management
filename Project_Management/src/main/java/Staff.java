@@ -9,7 +9,6 @@ public abstract class Staff {
     public static final SimpleDateFormat F = new SimpleDateFormat("dd/MM/yyyy");
     private String id, fullName, email, gender;
     private Date dateOfBirth;
-    private int chooseGender;
     private static int count = 0;
     protected static final double salary = 6000000;
     private double factor = 0.0;
@@ -43,6 +42,7 @@ public abstract class Staff {
 
     //Nhập 1 nhân viên
     public void inputStaff(){
+        int chooseGender = 0;
         boolean checkException;
         this.dateOfBirth = new Date(0);
         System.out.print("Nhap ho ten nhan vien: ");
@@ -56,18 +56,18 @@ public abstract class Staff {
         do {
             try {
                 System.out.print("Gioi tinh: 1. Nu\t2. Nam\t3. Khac\nChon gioi tinh: ");
-                this.setChooseGender(Integer.parseInt(scanner.nextLine()));
+                chooseGender = scanner.nextInt();
                 checkException = true;
-                if (this.getChooseGender() < 1 || this.getChooseGender() > 3)
+                if (chooseGender < 1 || chooseGender > 3)
                     System.out.println("Vui long nhap dung huong dan!");
             } catch (NumberFormatException exception) {
                 checkException = false;
                 System.out.println("Vui long nhap dung huong dan!");
             }
-        } while (this.getChooseGender() < 1 || this.getChooseGender() > 3 || !checkException);
-        if (this.getChooseGender() == 1) this.gender = "Nu";
-        if (this.getChooseGender() == 2) this.gender = "Nam";
-        if (this.getChooseGender() == 3) this.gender = "Khac";
+        } while (chooseGender < 1 || chooseGender > 3 || !checkException);
+        if (chooseGender == 1) this.gender = "Nu";
+        if (chooseGender == 2) this.gender = "Nam";
+        if (chooseGender == 3) this.gender = "Khac";
         do {
             try {
                 System.out.printf("Nhap ngay sinh theo format (%s): ", F.toPattern());
@@ -178,13 +178,5 @@ public abstract class Staff {
 
     public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public int getChooseGender() {
-        return chooseGender;
-    }
-
-    public void setChooseGender(int chooseGender) {
-        this.chooseGender = chooseGender;
     }
 }
