@@ -56,7 +56,7 @@ public abstract class Staff {
         do {
             try {
                 System.out.print("Gioi tinh: 1. Nu\t2. Nam\t3. Khac\nChon gioi tinh: ");
-                chooseGender = scanner.nextInt();
+                chooseGender = Integer.parseInt(scanner.nextLine());
                 checkException = true;
                 if (chooseGender < 1 || chooseGender > 3)
                     System.out.println("Vui long nhap dung huong dan!");
