@@ -502,7 +502,7 @@ public class Main {
                                         break;
                                     case 8:
                                         if (init2) {
-                                            if (staffs.getListStaffs().size() > MINSTAFF) {
+                                            if (staffs.getListStaffs().size() >= MINSTAFF) {
                                                 System.out.print("Nhap ma du an: ");
                                                 idProjects = sc.nextLine();
                                                 posProject = projects.findId(idProjects);
