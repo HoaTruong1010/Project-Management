@@ -1,6 +1,8 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Project {
@@ -11,11 +13,10 @@ public class Project {
     private Date startDate , endDate ;
     private double investment;
     private Staff manager;
-    private StaffManagement staffs;
+    private List<Staff> staffs = new ArrayList<>();
 
     {
         this.id = String.format("%03d", ++count);
-        staffs = new StaffManagement();
     }
 
     public Project(String n, Date start, Date end, double inv){
@@ -82,6 +83,14 @@ public class Project {
         this.manager = manager;
     }
 
+    public int findId(String id) {
+        for (int i = 0; i < this.staffs.size(); i++) {
+            if(this.staffs.get(i).getId().equals(id))
+                return i;
+        }
+        return -1;
+    }
+
     public static int getCount() {
         return count;
     }
@@ -134,11 +143,11 @@ public class Project {
         return manager;
     }
 
-    public StaffManagement getStaffs() {
+    public List<Staff> getStaffs() {
         return staffs;
     }
 
-    public void setStaffs(StaffManagement staffs) {
-        staffs = staffs;
+    public void setStaffs(List<Staff> staffs) {
+        this.staffs = staffs;
     }
 }
