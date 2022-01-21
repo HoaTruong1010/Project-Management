@@ -17,7 +17,7 @@ public class Main {
         List<Project> projectsFound = new ArrayList<>();
         Date d, inDate = null;
         int choice = 1, choice2 = 1, choice2_3, choice2_5 = 1, choice2_8 = 1;
-        int choice1 = 1, choice1_4 = 1, choose = 1 , choose1 = 1, choice1_6;
+        int choice1 = 1, choice1_4 = 1, choose = 0 , choose1 = 0, choice1_6;
         boolean init1 = false, init2 = false,  checkParse;
         String idProjects, idStaff, inName, inTypeStaff = null, inEmail = null;
         int posProject, posStaff = 0, size = 0;
@@ -89,7 +89,7 @@ public class Main {
                                                 }
                                                 staffs.delete(staffs.getListStaffs().get(posStaff));
                                                 System.out.println("Da xoa nhan vien thanh cong!");
-                                                if (projects.getListProjects().size() == 0)
+                                                if (staffs.getListStaffs().size() == 0)
                                                     init1 = false;
                                             }
                                             else
@@ -502,7 +502,7 @@ public class Main {
                                         break;
                                     case 8:
                                         if (init2) {
-                                            if (staffs.getListStaffs().size() > MINSTAFF) {
+                                            if (staffs.getListStaffs().size() >= MINSTAFF) {
                                                 System.out.print("Nhap ma du an: ");
                                                 idProjects = sc.nextLine();
                                                 posProject = projects.findId(idProjects);

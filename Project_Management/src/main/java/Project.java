@@ -69,7 +69,7 @@ public class Project {
                         "+ Phi dau tu: %.1f\n", this.id, this.name, F.format(this.startDate.getTime()),
                 F.format(this.endDate.getTime()), this.investment);
         if (this.manager != null) {
-            System.out.print("+ NHAN VIEN QUAN LY du an: ");
+            System.out.print("+ NHAN VIEN QUAN LY du an: \n");
             this.manager.showSingle();
         }
     }
