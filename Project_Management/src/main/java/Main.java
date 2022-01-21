@@ -85,7 +85,7 @@ public class Main {
                                             posStaff = staffs.findId(idStaff);
                                             if (posStaff >= 0) {
                                                 for (Project p : projects.getListProjects()) {
-                                                    p.getStaffs().delete(p.getStaffs().getListStaffs().get(p.getStaffs().findId(idStaff)));
+                                                    p.getStaffs().remove(p.getStaffs().get(p.findId(idStaff)));
                                                 }
                                                 staffs.delete(staffs.getListStaffs().get(posStaff));
                                                 System.out.println("Da xoa nhan vien thanh cong!");
@@ -290,8 +290,10 @@ public class Main {
                                             idStaff = sc.nextLine();
                                             posStaff = staffs.findId(idStaff);
                                             if (posStaff >= 0) {
-                                                if (staffs.getListStaffs().get(posStaff).getProjects().getListProjects().size() > 0)
-                                                    staffs.getListStaffs().get(posStaff).getProjects().showList();
+                                                if (staffs.getListStaffs().get(posStaff).getProjects().size() > 0) {
+                                                    System.out.println("----DANH SACH DU AN----");
+                                                    staffs.getListStaffs().get(posStaff).getProjects().forEach( x -> x.showSingle() );
+                                                }
                                                 else
                                                     System.out.println("Nhan vien nay chua co du an!");
                                             }
@@ -341,9 +343,13 @@ public class Main {
                                             posProject = projects.findId(idProjects);
                                             System.out.println("---- KET QUA ----");
                                             if(posProject >= 0) {
-                                                size = projects.getListProjects().get(posProject).getStaffs().getListStaffs().size();
+                                                size = projects.getListProjects().get(posProject).getStaffs().size();
                                                 if (size > 0) {
-                                                    projects.getListProjects().get(posProject).getStaffs().showList();
+                                                    System.out.println("----DANH SACH NHAN VIEN----");
+                                                    projects.getListProjects().get(posProject).getStaffs().forEach(p -> {
+                                                        p.showSingle();
+                                                        System.out.println();
+                                                    });
                                                     try {
                                                         System.out.print("\nXem danh sach du an cua mot nhan vien dang thuc hien?\n" +
                                                                 "Neu co bam so 1, nguoc lai bam so bat ky de thoat!\nBan chon: ");
@@ -351,12 +357,15 @@ public class Main {
                                                         while (choice2_3 == 1) {
                                                             System.out.print("Nhap ma nhan vien: ");
                                                             idStaff = sc.nextLine();
-                                                            posStaff = projects.getListProjects().get(posProject).getStaffs().findId(idStaff);
-                                                            if(posStaff >= 0)
-                                                                staffs.getListStaffs().get(posStaff).getProjects().showList();
+                                                            posStaff = projects.getListProjects().get(posProject).findId(idStaff);
+                                                            if(posStaff >= 0) {
+                                                                System.out.println("----DANH SACH DU AN----");
+                                                                staffs.getListStaffs().get(posStaff).getProjects().forEach( x -> x.showSingle() );
+                                                            }
                                                             else if(projects.getListProjects().get(posProject).getManager().getId() == idStaff) {
                                                                 posStaff = staffs.findId(idStaff);
-                                                                staffs.getListStaffs().get(posStaff).getProjects().showList();
+                                                                System.out.println("----DANH SACH DU AN----");
+                                                                staffs.getListStaffs().get(posStaff).getProjects().forEach( x -> x.showSingle() );
                                                             }
                                                             else
                                                                 System.out.println("KHONG tim thay nhan vien!");
@@ -385,7 +394,7 @@ public class Main {
                                             System.out.println("---- KET QUA ----");
                                             if (posProject >= 0) {
                                                 for (Staff s : staffs.getListStaffs()) {
-                                                    s.getProjects().delete(s.getProjects().getListProjects().get(s.getProjects().findId(idProjects)));
+                                                    s.getProjects().remove(s.getProjects().get(s.findId(idProjects)));
                                                 }
                                                 projects.delete(projects.getListProjects().get(posProject));
                                                 System.out.println("Xoa thanh cong!");
@@ -438,15 +447,15 @@ public class Main {
                                                                 System.out.println("Sua thanh cong!");
                                                                 break;
                                                             case 4:
-                                                                if(projects.getListProjects().get(posProject).getStaffs().getListStaffs().size() > 5) {
+                                                                if(projects.getListProjects().get(posProject).getStaffs().size() > 5) {
                                                                     System.out.print("Nhap ma nhan vien can xoa: ");
                                                                     idStaff = sc.nextLine();
-                                                                    posStaff = projects.getListProjects().get(posProject).getStaffs().findId(idStaff);
+                                                                    posStaff = projects.getListProjects().get(posProject).findId(idStaff);
                                                                     if (posStaff >= 0) {
-                                                                        projects.getListProjects().get(posProject).getStaffs().delete(
-                                                                                projects.getListProjects().get(posProject).getStaffs().getListStaffs().get(posProject));
-                                                                        staffs.getListStaffs().get(posStaff).getProjects().delete(
-                                                                                staffs.getListStaffs().get(posStaff).getProjects().getListProjects().get(posProject));
+                                                                        projects.getListProjects().get(posProject).getStaffs().remove(
+                                                                                projects.getListProjects().get(posProject).getStaffs().get(posStaff));
+                                                                        staffs.getListStaffs().get(posStaff).getProjects().remove(
+                                                                          staffs.getListStaffs().get(posStaff).getProjects().get(posProject));
                                                                         System.out.println("Xoa thanh cong!");
                                                                     } else
                                                                         System.out.println("KHONG tim thay nhan vien!");
@@ -514,16 +523,16 @@ public class Main {
                                                             choice2_8 = Integer.parseInt(sc.nextLine());
                                                             switch (choice2_8) {
                                                                 case 1:
-                                                                    size = projects.getListProjects().get(posProject).getStaffs().getListStaffs().size();
+                                                                    size = projects.getListProjects().get(posProject).getStaffs().size();
                                                                     if (size < 10) {
                                                                         System.out.print("Nhap ma nhan vien: ");
                                                                         idStaff = sc.nextLine();
                                                                         posStaff = staffs.findId(idStaff);
                                                                         if (posStaff >= 0) {
-                                                                            if (staffs.getListStaffs().get(posStaff).getProjects().getListProjects().size() < 3
+                                                                            if (staffs.getListStaffs().get(posStaff).getProjects().size() < 3
                                                                                     && !projects.isLike(posProject, idStaff)) {
                                                                                 projects.getListProjects().get(posProject).getStaffs().add(staffs.getListStaffs().get(posStaff));
-                                                                                staffs.getListStaffs().get(posStaff).getProjects().getListProjects().add(projects
+                                                                                staffs.getListStaffs().get(posStaff).getProjects().add(projects
                                                                                         .getListProjects().get(posProject));
                                                                                 size += 1;
                                                                                 System.out.println("Them thanh cong!");

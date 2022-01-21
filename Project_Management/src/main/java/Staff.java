@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,13 +14,12 @@ public abstract class Staff {
     private static int count = 0;
     protected static final double salary = 6000000;
     private double factor = 0.0;
-    private ProjectManagement projects;
+    private List<Project> projects = new ArrayList<>();
     private Department department;
     public static final Scanner scanner = new Scanner(System.in);
 
     {
         this.id = String.format("%03d", ++count);
-        projects = new ProjectManagement();
         department = new Department();
     }
 
@@ -108,6 +109,14 @@ public abstract class Staff {
 
     public abstract void inputGrant();
 
+    public int findId(String id) {
+        for (int i = 0; i < this.projects.size(); i++) {
+            if(this.projects.get(i).getId().equals(id))
+                return i;
+        }
+        return -1;
+    }
+
     public static int getCount() {
         return count;
     }
@@ -164,19 +173,19 @@ public abstract class Staff {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public ProjectManagement getProjects() {
-        return projects;
-    }
-
-    public void setProjects(ProjectManagement projects) {
-        projects = projects;
-    }
-
     public Department getDepartment() {
         return department;
     }
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 }

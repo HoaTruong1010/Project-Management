@@ -42,7 +42,7 @@ public class ProjectManagement {
     }
 
     public boolean isLike(int posProject, String idStaff) {
-        for (Staff p: this.listProjects.get(posProject).getStaffs().getListStaffs()) {
+        for (Staff p: this.listProjects.get(posProject).getStaffs()) {
             if (p.getId().equals(idStaff))
                 return true;
         }
